@@ -1,0 +1,7 @@
+{
+  "name": "cacau",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
