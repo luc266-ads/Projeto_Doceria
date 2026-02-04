@@ -1,0 +1,7 @@
+{
+  "name": "Pojeto_Doceria",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
