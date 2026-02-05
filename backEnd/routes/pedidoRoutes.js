@@ -1,20 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const pedidoController = require('../controllers/pedidoController');
 
-// GET /users - lista todos os usuários
-router.get('/', userController.getUsers);
+// ENDPOINTS DE PEDIDOS
 
-// GET /users/:id - busca um usuário específico
-router.get('/:id', userController.getUserById);
+// GET /pedidos - lista todos os Pedidos
+router.get('/', pedidoController.getPedidos);
 
-// POST /users - cria um novo usuário
-router.post('/', userController.createUser);
+// GET /pedidos/:id - busca um pedido específico
+router.get('/:id', pedidoController.getPedidoById);
 
-// PUT /users/:id - atualiza um usuário existente
-router.put('/:id', userController.updateUser);
+// POST /pedidos - cria um novo pedido
+router.post('/', pedidoController.createPedido);
 
-// DELETE /users/:id - remove um usuário
-router.delete('/:id', userController.deleteUser);
+// PUT /pedidos/:id - atualiza um pedido existente
+router.put('/:id', pedidoController.updatePedido);
+
+// DELETE /pedidos/:id - remove um pedido
+router.delete('/:id', pedidoController.deletePedido);
 
 module.exports = router;

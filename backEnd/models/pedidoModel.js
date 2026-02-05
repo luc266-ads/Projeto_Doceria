@@ -1,63 +1,62 @@
-let users = [];
+let pedidos = [];
 let nextId = 1;
 
-function getAllUsers() {
-  return users;
+function getAllpedidos() {
+  return pedidos;
 }
 
-function getUserById(id) {
-  return users.find((user) => user.id === id);
+function getPedidoById(id) {
+  return pedidos.find((pedido) => pedido.id === id);
 }
 
-function addUser(userData) {
-  const user = {
-    id: nextId++,
-    nomeUser: userData.nomeUser,
-    telefone: userData.telefone,
-    enderenco: userData.enderenco,
-    complemento: userData.complemento,
-    numeroResidencia: userData.numeroResidencia
+function addPedido(pedidoData) {
+  const pedido = {
+    idPedido: nextId++,
+    nomeCliente: pedidoData.nomeCliente,
+    quantidade: pedidoData.quantidade,
+    numeroProduto: pedidoData.numeroProduto,
+    preco: pedidoData.preco
   };
 
-  users.push(user);
-  return user;
+  pedidos.push(pedido);
+  return pedido;
 }
 
-function updateUser(id, userData) {
-  const index = users.findIndex((user) => user.id === id);
+function updatePedido(id, pedidoData) {
+  const index = pedidos.findIndex((pedido) => pedido.id === id);
 
   if (index === -1) {
     return null;
   }
 
-  const updatedUser = {
-    ...users[index],
-    nomeUser: userData.nomeUser,
-    telefone: userData.telefone,
-    enderenco: userData.enderenco,
-    complemento: userData.complemento,
-    numeroResidencia: userData.numeroResidencia
+  const updatedPedido = {
+    ...pedidos[index],
+    nomeCliente: pedidoData.nomeCliente,
+    quantidade: pedidoData.quantidade,
+    numeroProduto: pedidoData.numeroProduto,
+    preco: pedidoData.preco
+   
   };
 
-  users[index] = updatedUser;
-  return updatedUser;
+  pedidos[index] = updatedPedido;
+  return updatedPedido;
 }
 
-function deleteUser(id) {
-  const index = users.findIndex((user) => user.id === id);
+function deletePedido(id) {
+  const index = pedidos.findIndex((pedido) => pedido.id === id);
 
   if (index === -1) {
     return false;
   }
 
-  users.splice(index, 1);
+  pedidos.splice(index, 1);
   return true;
 }
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  addUser,
-  updateUser,
-  deleteUser
+  getAllpedidos,
+  getPedidoById,
+  addPedido,
+  updatePedido,
+  deletePedido
 };

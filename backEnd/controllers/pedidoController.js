@@ -1,12 +1,11 @@
-const userModel = require('../models/userModel');
+const pedidosModel = require('../models/pedidoModel');
 
-function validateUserData(body) {
+function validatePedidoData(body) {
   const requiredFields = [
-    'nomeUser',
-    'telefone',
-    'enderenco',
-    'complemento',
-    'numeroResidencia'
+    'nomeCliente',
+    'quantidade',
+    'numeroProduto',
+    'preco'
   ];
 
   const missingFields = requiredFields.filter((field) => {
@@ -23,11 +22,10 @@ function validateUserData(body) {
   }
 
   const data = {
-    nomeUser: body.nomeUser,
-    telefone: body.telefone,
-    enderenco: body.enderenco,
-    complemento: body.complemento,
-    numeroResidencia: body.numeroResidencia
+    nomeCliente: body.nomeCliente,
+    quantidade: body.quantidade,
+    numeroProduto: body.numeroProduto,
+    preco: body.preco
   };
 
   return {
@@ -37,43 +35,43 @@ function validateUserData(body) {
   };
 }
 
-function getUsers(req, res) {
-  const users = userModel.getAllUsers();
+function getPedidos(req, res) {
+  const pedido = pedidosModel.getAllpedidos();
 
   return res.status(200).json({
     message: 'Lista de usuários retornada com sucesso.',
-    quantidade: users.length,
-    data: users
+    quantidade: pedido.length,
+    data: pedido
   });
 }
 
-function getUserById(req, res) {
-  const id = parseInt(req.params.id, 10);
+function getPedidoById(req, res) {
+  const idPedido = parseInt(req.params.idPedido, 10);
 
-  if (Number.isNaN(id)) {
+  if (Number.isNaN(idPedido)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do pedido inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const user = userModel.getUserById(id);
+  const pedido = pedidosModel.getPedidoById(idPedido);
 
-  if (!user) {
+  if (!pedido) {
     return res.status(404).json({
-      message: 'Usuário não encontrado.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Pedido não encontrado.',
+      detalhes: `Nenhum pedido foi encontrado com o ID ${idPedido}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário encontrado com sucesso.',
-    data: user
+    message: 'Pedido encontrado com sucesso.',
+    data: pedido
   });
 }
 
-function createUser(req, res) {
-  const { isValid, data, missingFields } = validateUserData(req.body);
+function createPedido(req, res) {
+  const { isValid, data, missingFields } = validatePedidoData(req.body);
 
   if (!isValid) {
     return res.status(400).json({
@@ -82,25 +80,25 @@ function createUser(req, res) {
     });
   }
 
-  const user = userModel.addUser(data);
+  const pedido = pedidosModel.addPedido(data);
 
   return res.status(201).json({
-    message: 'Usuário criado com sucesso.',
-    data: user
+    message: 'Pedido criado com sucesso.',
+    data: pedido
   });
 }
 
-function updateUser(req, res) {
-  const id = parseInt(req.params.id, 10);
+function updatePedido(req, res) {
+  const idPedido = parseInt(req.params.idPedido, 10);
 
-  if (Number.isNaN(id)) {
+  if (Number.isNaN(idPedido)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do pedido inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const { isValid, data, missingFields } = validateUserData(req.body);
+  const { isValid, data, missingFields } = validatePedidoData(req.body);
 
   if (!isValid) {
     return res.status(400).json({
@@ -109,50 +107,50 @@ function updateUser(req, res) {
     });
   }
 
-  const updatedUser = userModel.updateUser(id, data);
+  const updatedPedido = pedidosModel.updatePedido(idPedido, data);
 
-  if (!updatedUser) {
+  if (!updatedPedido) {
     return res.status(404).json({
-      message: 'Usuário não encontrado para atualização.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Pedido não encontrado para atualização.',
+      detalhes: `Nenhum pedido foi encontrado com o ID ${idPedido}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário atualizado com sucesso.',
-    data: updatedUser
+    message: 'Pedido atualizado com sucesso.',
+    data: updatedPedido
   });
 }
 
-function deleteUser(req, res) {
-  const id = parseInt(req.params.id, 10);
+function deletePedido(req, res) {
+  const idPedido = parseInt(req.params.idPedido, 10);
 
-  if (Number.isNaN(id)) {
+  if (Number.isNaN(idPedido)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do pedido inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const deleted = userModel.deleteUser(id);
+  const deleted = pedidosModel.deletePedido(idPedido);
 
   if (!deleted) {
     return res.status(404).json({
-      message: 'Usuário não encontrado para exclusão.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Pedido não encontrado para exclusão.',
+      detalhes: `Nenhum pedido foi encontrado com o ID ${idPedido}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário removido com sucesso.',
+    message: 'Pedido removido com sucesso.',
     data: null
   });
 }
 
 module.exports = {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
+  getPedidos,
+  getPedidoById,
+  createPedido,
+  updatePedido,
+  deletePedido
 };
