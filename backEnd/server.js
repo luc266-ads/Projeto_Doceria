@@ -11,3 +11,6 @@ app.listen(PORT, () => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}/pedidos`);
 });
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}/produtos`);
+});

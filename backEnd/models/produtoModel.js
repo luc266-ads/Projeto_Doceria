@@ -1,63 +1,61 @@
-let users = [];
+let produtos = [];
 let nextId = 1;
 
-function getAllUsers() {
-  return users;
+function getAllProdutos() {
+  return produtos;
 }
 
-function getUserById(id) {
-  return users.find((user) => user.id === id);
+function getProdutoById(id) {
+  return produtos.find((produto) => produto.id === id);
 }
 
-function addUser(userData) {
-  const user = {
-    id: nextId++,
-    nomeUser: userData.nomeUser,
-    telefone: userData.telefone,
-    enderenco: userData.enderenco,
-    complemento: userData.complemento,
-    numeroResidencia: userData.numeroResidencia
+function addProduto(produtoData) {
+  const produto = {
+    idProduto: nextId++,
+    nomeProduto: produtoData.nomeProduto,
+    descricao: produtoData.descricao,
+    quantidade: produtoData.quantidade,
+    precoUnid: produtoData.precoUnid,
   };
 
-  users.push(user);
-  return user;
+  produtos.push(produto);
+  return produto;
 }
 
-function updateUser(id, userData) {
-  const index = users.findIndex((user) => user.id === id);
+function updateProduto(id, produtoData) {
+  const index = produtos.findIndex((produto) => produto.idProduto === id);
 
   if (index === -1) {
     return null;
   }
 
-  const updatedUser = {
-    ...users[index],
-    nomeUser: userData.nomeUser,
-    telefone: userData.telefone,
-    enderenco: userData.enderenco,
-    complemento: userData.complemento,
-    numeroResidencia: userData.numeroResidencia
+  const updatedproduto = {
+    ...produtos[index],
+    nomeProduto: produtoData.nomeProduto,
+    descricao: produtoData.descricao,
+    quantidade: produtoData.quantidade,
+    precoUnid: produtoData.precoUnid,
   };
 
-  users[index] = updatedUser;
-  return updatedUser;
+  produtos[index] = updatedproduto;
+  return updatedproduto;
 }
 
-function deleteUser(id) {
-  const index = users.findIndex((user) => user.id === id);
+function deleteProduto(id) {
+  const index = produtos.findIndex((produto) => produto.idProduto === id);
 
   if (index === -1) {
     return false;
   }
 
-  users.splice(index, 1);
+  produtos.splice(index, 1);
   return true;
 }
 
 module.exports = {
-  getAllUsers,
-  getUserById,
-  addUser,
-  updateUser,
-  deleteUser
+  getAllProdutos,
+  getProdutoById,
+  addProduto,
+  updateProduto,
+  deleteProduto
 };

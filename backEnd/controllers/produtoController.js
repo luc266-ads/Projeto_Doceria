@@ -1,12 +1,11 @@
-const userModel = require('../models/userModel');
+const produtoModel = require('../models/produtoModel');
 
-function validateUserData(body) {
+function validateProdutoData(body) {
   const requiredFields = [
-    'nomeUser',
-    'telefone',
-    'enderenco',
-    'complemento',
-    'numeroResidencia'
+    "nomeProduto" ,
+    "descricao",
+    "quantidade",
+    "precoUnid" 
   ];
 
   const missingFields = requiredFields.filter((field) => {
@@ -23,11 +22,10 @@ function validateUserData(body) {
   }
 
   const data = {
-    nomeUser: body.nomeUser,
-    telefone: body.telefone,
-    enderenco: body.enderenco,
-    complemento: body.complemento,
-    numeroResidencia: body.numeroResidencia
+    nomeProduto: body.nomeProduto,
+    descricao: body.descricao,
+    quantidade: body.quantidade,
+    precoUnid: body.precoUnid,
   };
 
   return {
@@ -37,43 +35,43 @@ function validateUserData(body) {
   };
 }
 
-function getUsers(req, res) {
-  const users = userModel.getAllUsers();
+function getProdutos(req, res) {
+  const produtos = produtoModel.getAllProdutos();
 
   return res.status(200).json({
-    message: 'Lista de usuários retornada com sucesso.',
-    quantidade: users.length,
-    data: users
+    message: 'Lista de Produtos retornada com sucesso.',
+    quantidade: produtos.length,
+    data: produtos
   });
 }
 
-function getUserById(req, res) {
+function getProdutoById(req, res) {
   const id = parseInt(req.params.id, 10);
 
   if (Number.isNaN(id)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do produto inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const user = userModel.getUserById(id);
+  const produto = produtoModel.getProdutoById(id);
 
-  if (!user) {
+  if (!produto) {
     return res.status(404).json({
-      message: 'Usuário não encontrado.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Produto não encontrado.',
+      detalhes: `Nenhum Produto foi encontrado com o ID ${id}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário encontrado com sucesso.',
-    data: user
+    message: 'Produto encontrado com sucesso.',
+    data: produto
   });
 }
 
-function createUser(req, res) {
-  const { isValid, data, missingFields } = validateUserData(req.body);
+function createProduto(req, res) {
+  const { isValid, data, missingFields } = validateProdutoData(req.body);
 
   if (!isValid) {
     return res.status(400).json({
@@ -82,25 +80,25 @@ function createUser(req, res) {
     });
   }
 
-  const user = userModel.addUser(data);
+  const produto = produtoModel.addProduto(data);
 
   return res.status(201).json({
-    message: 'Usuário criado com sucesso.',
-    data: user
+    message: 'Produto criado com sucesso.',
+    data: produto
   });
 }
 
-function updateUser(req, res) {
+function updateProduto(req, res) {
   const id = parseInt(req.params.id, 10);
 
   if (Number.isNaN(id)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do produto inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const { isValid, data, missingFields } = validateUserData(req.body);
+  const { isValid, data, missingFields } = validateProdutoData(req.body);
 
   if (!isValid) {
     return res.status(400).json({
@@ -109,50 +107,50 @@ function updateUser(req, res) {
     });
   }
 
-  const updatedUser = userModel.updateUser(id, data);
+  const updatedProduto = produtoModel.updateProduto(id, data);
 
-  if (!updatedUser) {
+  if (!updatedProduto) {
     return res.status(404).json({
-      message: 'Usuário não encontrado para atualização.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Produto não encontrado para atualização.',
+      detalhes: `Nenhum produto foi encontrado com o ID ${id}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário atualizado com sucesso.',
-    data: updatedUser
+    message: 'Produto atualizado com sucesso.',
+    data: updatedProduto
   });
 }
 
-function deleteUser(req, res) {
+function deleteProduto(req, res) {
   const id = parseInt(req.params.id, 10);
 
   if (Number.isNaN(id)) {
     return res.status(400).json({
-      message: 'ID de usuário inválido.',
+      message: 'ID do produto inválido.',
       detalhes: 'O parâmetro "id" deve ser um número inteiro.'
     });
   }
 
-  const deleted = userModel.deleteUser(id);
+  const deleted = produtoModel.deleteProduto(id);
 
   if (!deleted) {
     return res.status(404).json({
-      message: 'Usuário não encontrado para exclusão.',
-      detalhes: `Nenhum usuário foi encontrado com o ID ${id}.`
+      message: 'Produto não encontrado para exclusão.',
+      detalhes: `Nenhum produto foi encontrado com o ID ${id}.`
     });
   }
 
   return res.status(200).json({
-    message: 'Usuário removido com sucesso.',
+    message: 'Produto removido com sucesso.',
     data: null
   });
 }
 
 module.exports = {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
+  getProdutos,
+  getProdutoById,
+  createProduto,
+  updateProduto,
+  deleteProduto
 };
