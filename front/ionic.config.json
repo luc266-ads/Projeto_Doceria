@@ -1,7 +1,7 @@
 {
-  "name": "cacau",
+  "name": "front",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular-standalone"
 }
