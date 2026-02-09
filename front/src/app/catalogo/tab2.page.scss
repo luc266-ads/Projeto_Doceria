@@ -1,0 +1,100 @@
+
+
+.doceria-header ion-toolbar {
+  --background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 100%);
+  --color: var(--doceria-cream);
+}
+
+.doceria-content {
+  --background: var(--doceria-cream);
+  color: var(--doceria-brown-dark);
+}
+
+.catalog-page {
+  .filter-chips {
+    padding: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    ion-chip {
+      flex-shrink: 0;
+      --background: var(--doceria-white);
+      --color: var(--doceria-brown-dark);
+    }
+    ion-chip[color="primary"] {
+      --background: var(--doceria-brown);
+      --color: var(--doceria-cream);
+    }
+  }
+
+  .products-list {
+    padding: 0 1rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .product-row {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 1rem;
+    border-radius: var(--doceria-radius);
+    box-shadow: 0 2px 12px var(--doceria-shadow);
+    overflow: hidden;
+
+    ion-card-content {
+      display: none;
+    }
+
+    .product-thumb {
+      width: 90px;
+      min-height: 90px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      ion-icon {
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    .product-info {
+      flex: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      h3 {
+        margin: 0 0 0.25rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--doceria-brown);
+      }
+      p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--doceria-brown-dark);
+        opacity: 0.9;
+      }
+      .product-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        .price {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--doceria-brown);
+        }
+        ion-button {
+          --background: var(--doceria-brown);
+          --color: var(--doceria-cream);
+        }
+      }
+    }
+  }
+}

@@ -1,2 +1,22 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+// Paleta Doceria - E-commerce de Sobremesas
+// Cores quentes e convidativas para doceria
+:root {
+  --doceria-brown: #6b4423;
+  --doceria-brown-dark: #4a2f18;
+  --doceria-chocolate: #8b5a2b;
+  --doceria-caramel: #c17f3a;
+  --doceria-gold: #d4a84b;
+  --doceria-cream: #fdf5e6;
+  --doceria-cream-dark: #f5e6d3;
+  --doceria-white: #fffef9;
+  --doceria-rose: #e8b4b8;
+  --doceria-shadow: rgba(107, 68, 35, 0.12);
+  --doceria-success: #5a8f5a;
+  --doceria-radius: 12px;
+  --doceria-radius-sm: 8px;
+
+  // Ionic theme override
+  --ion-color-primary: #6b4423;
+  --ion-color-primary-rgb: 107, 68, 35;
+  --ion-color-primary-contrast: #fdf5e6;
+}

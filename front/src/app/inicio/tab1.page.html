@@ -1,0 +1,85 @@
+<ion-header class="doceria-header" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Doce Lar Doceria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="doceria-content home-page">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Doces que encantam</h1>
+      <p>Bolos, tortas e doces artesanais feitos com carinho para seus momentos especiais</p>
+    </div>
+  </section>
+
+  <!-- Categorias -->
+  <section class="section">
+    <h2>Categorias</h2>
+    <div class="categories">
+      <a routerLink="/combos-pacotes" class="category-card">
+        <div class="category-icon">
+          <ion-icon name="gift"></ion-icon>
+        </div>
+        <span>Combos</span>
+      </a>
+      <a class="category-card">
+        <div class="category-icon">
+          <ion-icon name="nutrition"></ion-icon>
+        </div>
+        <span>Bolos</span>
+      </a>
+      <a class="category-card">
+        <div class="category-icon">
+          <ion-icon name="pie-chart"></ion-icon>
+        </div>
+        <span>Tortas</span>
+      </a>
+      <a class="category-card">
+        <div class="category-icon">
+          <ion-icon name="sparkles"></ion-icon>
+        </div>
+        <span>Doces</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Produtos em destaque -->
+  <section class="section">
+    <h2>Destaques</h2>
+    <div class="products-grid">
+      <ion-card class="product-card" *ngFor="let p of destaques">
+        <div class="product-image">
+          <ion-icon [name]="p.icon"></ion-icon>
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{ p.nome }}</ion-card-title>
+          <ion-card-subtitle>{{ p.descricao }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="product-footer">
+            <span class="price">R$ {{ p.preco }}</span>
+            <ion-button size="small" fill="solid" color="primary">
+              <ion-icon name="add" slot="icon-only"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
+
+  <!-- Banner CTA -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <ion-icon name="calendar"></ion-icon>
+      <div>
+        <h3>Encomendas para datas especiais</h3>
+        <p>Aniversários, casamentos, chás e eventos corporativos</p>
+      </div>
+      <ion-button routerLink="/tabs/tab3" fill="outline">
+        Fazer pedido
+      </ion-button>
+    </div>
+  </section>
+</ion-content>

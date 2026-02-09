@@ -1,0 +1,62 @@
+
+
+.doceria-header ion-toolbar {
+  --background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 100%);
+  --color: var(--doceria-cream);
+}
+
+.doceria-content {
+  --background: var(--doceria-cream);
+  color: var(--doceria-brown-dark);
+}
+
+.doceria-page .page-block {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  .page-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+    ion-icon {
+      font-size: 3rem;
+      color: var(--doceria-gold);
+    }
+  }
+  h1 {
+    font-size: 1.5rem;
+    color: var(--doceria-brown);
+    margin: 0 0 0.75rem;
+    text-align: center;
+  }
+  .lead {
+    font-size: 1rem;
+    color: var(--doceria-brown-dark);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .combo-card {
+    background: var(--doceria-white);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px var(--doceria-shadow);
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--doceria-brown);
+    }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--doceria-brown-dark);
+    }
+  }
+  .cta {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    color: var(--doceria-brown);
+  }
+}

@@ -1,0 +1,182 @@
+
+
+.doceria-header ion-toolbar {
+  --background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 100%);
+  --color: var(--doceria-cream);
+}
+
+.doceria-content {
+  --background: var(--doceria-cream);
+  color: var(--doceria-brown-dark);
+}
+
+.home-page {
+  .hero {
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 50%, var(--doceria-caramel) 100%);
+      opacity: 0.95;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--doceria-cream);
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      }
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--doceria-cream-dark);
+        opacity: 0.95;
+      }
+    }
+  }
+
+  .section {
+    padding: 1.5rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--doceria-brown);
+    }
+  }
+
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--doceria-brown-dark);
+      background: var(--doceria-white);
+      border-radius: var(--doceria-radius);
+      padding: 1rem 0.5rem;
+      box-shadow: 0 2px 10px var(--doceria-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      &:active {
+        transform: scale(0.98);
+      }
+      .category-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--doceria-gold) 0%, var(--doceria-caramel) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        ion-icon {
+          font-size: 1.5rem;
+          color: var(--doceria-white);
+        }
+      }
+      span {
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    .product-card {
+      margin: 0;
+      border-radius: var(--doceria-radius);
+      box-shadow: 0 2px 12px var(--doceria-shadow);
+      overflow: hidden;
+      ion-card-header {
+        padding: 0.75rem 1rem;
+        ion-card-title {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--doceria-brown);
+        }
+        ion-card-subtitle {
+          font-size: 0.8rem;
+          color: var(--doceria-brown-dark);
+          opacity: 0.9;
+        }
+      }
+      ion-card-content {
+        padding: 0.5rem 1rem 1rem;
+      }
+      .product-image {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ion-icon {
+          font-size: 3rem;
+          color: rgba(255,255,255,0.9);
+        }
+      }
+      .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .price {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--doceria-brown);
+        }
+        ion-button {
+          --background: var(--doceria-brown);
+          --color: var(--doceria-cream);
+        }
+      }
+    }
+  }
+
+  .cta-banner {
+    margin: 1.5rem 1rem 2rem;
+    background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 100%);
+    border-radius: var(--doceria-radius);
+    padding: 1.5rem;
+    .cta-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      ion-icon {
+        font-size: 2.5rem;
+        color: var(--doceria-gold);
+      }
+      h3 {
+        margin: 0 0 0.25rem;
+        font-size: 1rem;
+        color: var(--doceria-cream);
+      }
+      p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--doceria-cream-dark);
+      }
+      ion-button {
+        --border-color: var(--doceria-cream);
+        --color: var(--doceria-cream);
+        margin-left: auto;
+      }
+    }
+  }
+}

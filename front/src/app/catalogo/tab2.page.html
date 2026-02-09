@@ -1,0 +1,47 @@
+<ion-header class="doceria-header" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Catálogo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="doceria-content catalog-page">
+  <!-- Filtros por categoria -->
+  <div class="filter-chips">
+    <ion-chip [color]="filtroAtivo === 'todos' ? 'primary' : 'medium'" (click)="filtroAtivo = 'todos'">
+      Todos
+    </ion-chip>
+    <ion-chip [color]="filtroAtivo === 'bolos' ? 'primary' : 'medium'" (click)="filtroAtivo = 'bolos'">
+      Bolos
+    </ion-chip>
+    <ion-chip [color]="filtroAtivo === 'tortas' ? 'primary' : 'medium'" (click)="filtroAtivo = 'tortas'">
+      Tortas
+    </ion-chip>
+    <ion-chip [color]="filtroAtivo === 'doces' ? 'primary' : 'medium'" (click)="filtroAtivo = 'doces'">
+      Doces
+    </ion-chip>
+  </div>
+
+  <!-- Lista de produtos -->
+  <div class="products-list">
+    <ion-card class="product-row" *ngFor="let p of produtos">
+      <div class="product-thumb" [style.background]="p.bg">
+        <ion-icon [name]="p.icon"></ion-icon>
+      </div>
+      <div class="product-info">
+        <h3>{{ p.nome }}</h3>
+        <p>{{ p.descricao }}</p>
+        <div class="product-actions">
+          <span class="price">R$ {{ p.preco }}</span>
+          <ion-button size="small" fill="solid">
+            Adicionar
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

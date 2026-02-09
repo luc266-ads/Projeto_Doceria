@@ -1,0 +1,61 @@
+
+
+.doceria-header ion-toolbar {
+  --background: linear-gradient(135deg, var(--doceria-brown) 0%, var(--doceria-chocolate) 100%);
+  --color: var(--doceria-cream);
+}
+
+.doceria-content {
+  --background: var(--doceria-cream);
+  color: var(--doceria-brown-dark);
+}
+
+.doceria-page .page-block {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  .page-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+    ion-icon {
+      font-size: 3rem;
+      color: var(--doceria-caramel);
+    }
+  }
+  h1 {
+    font-size: 1.5rem;
+    color: var(--doceria-brown);
+    margin: 0 0 0.75rem;
+    text-align: center;
+  }
+  .lead {
+    font-size: 1rem;
+    color: var(--doceria-brown-dark);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .address-card {
+    background: var(--doceria-white);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px var(--doceria-shadow);
+    p {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      color: var(--doceria-brown-dark);
+    }
+    .horario {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--doceria-cream-dark);
+    }
+  }
+  .obs {
+    font-size: 0.85rem;
+    color: var(--doceria-brown);
+    text-align: center;
+    margin: 0;
+  }
+}
