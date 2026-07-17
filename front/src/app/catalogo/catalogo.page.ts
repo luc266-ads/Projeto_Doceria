@@ -3,16 +3,16 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, Ion
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss'],
+  selector: 'app-catalogo',
+  templateUrl: 'catalogo.page.html',
+  styleUrls: ['catalogo.page.scss'],
   imports: [
     IonHeader, IonToolbar, IonTitle, IonContent,
     IonButtons, IonButton, IonIcon, IonCard, IonChip,
     NgFor,
   ],
 })
-export class Tab2Page {
+export class catalogoPage {
   filtroAtivo = 'todos';
   produtos = [
     { nome: 'Bolo Red Velvet', descricao: 'Cream cheese', preco: '89,90', icon: 'nutrition', bg: 'linear-gradient(135deg, #c17f3a 0%, #6b4423 100%)', categoria: 'bolos' },

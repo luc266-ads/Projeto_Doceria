@@ -7,6 +7,6 @@ export const routes: Routes = [
   },
   {
     path: 'combos-pacotes',
-    loadComponent: () => import('./combos-pacotes/combos-pacotes.page').then((m) => m.CombosPacotesPage),
+    loadComponent: () => import('./combosPacotes/combosPacotes.page').then((m) => m.CombosPacotesPage),
   },
 ];

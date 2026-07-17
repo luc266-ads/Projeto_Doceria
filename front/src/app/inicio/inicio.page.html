@@ -2,52 +2,66 @@
   <header>
     <div class="header-content">
       <div class="logo">🍰 Doce Lar Doceria</div>
+  
       <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+  
       <nav [class.active]="menuAberto">
-        <a href="#inicio" (click)="fecharMenu()">Início</a>
-        <a href="#catalogo" (click)="fecharMenu()">Catálogo</a>
-        <a href="#contato" (click)="fecharMenu()">Contato</a>
-        <a href="#quem-somos" (click)="fecharMenu()">Quem Somos</a>
-        <a href="#endereco" (click)="fecharMenu()">Endereço</a>
+        <a href="#">Início</a>
+        <a href="#">Catálogo</a>
+        <a href="#">Contato</a>
+        <a href="#">Quem Somos</a>
+        <a href="#">Endereço</a>
       </nav>
     </div>
   </header>
-
+  
   <section class="hero">
     <h1>Doces que encantam</h1>
-    <p>Bolos, tortas e doces artesanais feitos com carinho para seus momentos especiais</p>
+    <p>Bolos, tortas e doces artesanais feitos com carinho</p>
   </section>
-
+  
   <div class="container">
     <h2 class="section-title">Categorias</h2>
+  
     <div class="categorias">
-      <div class="categoria-card" *ngFor="let categoria of categorias">
-        <div class="categoria-icon">{{ categoria.icone }}</div>
-        <h3>{{ categoria.nome }}</h3>
+      <div
+        class="categoria-card"
+        *ngFor="let cat of categorias"
+        [class.active]="categoriaSelecionada === cat.valor"
+        (click)="selecionarCategoria(cat.valor)"
+      >
+        <div class="categoria-icon">{{ cat.icone }}</div>
+        <h3>{{ cat.nome }}</h3>
       </div>
     </div>
-
+  
     <h2 class="section-title">Destaques</h2>
+  
     <div class="produtos-grid">
-      <div class="produto-card" *ngFor="let produto of produtos">
+      <div
+        class="produto-card"
+        *ngFor="let produto of produtos"
+        [class.hidden]="!produtoVisivel(produto)"
+      >
         <div class="produto-imagem">{{ produto.icone }}</div>
+  
         <div class="produto-info">
           <h3 class="produto-nome">{{ produto.nome }}</h3>
           <p class="produto-descricao">{{ produto.descricao }}</p>
+  
           <div class="produto-footer">
             <span class="produto-preco">R$ {{ produto.preco }}</span>
-            <button class="btn-adicionar" [class.adicionado]="produto.adicionado" (click)="adicionar(produto)">
-              {{ produto.adicionado ? '✓ Adicionado' : 'Adicionar' }}
+  
+            <button
+              class="btn-adicionar"
+              #btn
+              (click)="adicionar(btn)"
+            >
+              Adicionar
             </button>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="banner-especial">
-      <h2>Encomendas para datas especiais</h2>
-      <p>Personalizamos bolos e doces para tornar sua celebração ainda mais especial</p>
-      <a href="#catalogo" class="btn-catalogo">Ver Catálogo Completo</a>
     </div>
   </div>
   

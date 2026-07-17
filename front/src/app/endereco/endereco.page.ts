@@ -7,4 +7,4 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButtons,
   styleUrls: ['./endereco.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButtons, IonIcon],
 })
-export class EnderecoPage {}
+export class enderecoPage {}

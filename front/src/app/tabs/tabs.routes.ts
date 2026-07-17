@@ -7,40 +7,40 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'inicio',
         loadComponent: () =>
-          import('../inicio/tab1.page').then((m) => m.Tab1Page),
+          import('../inicio/inicio.page').then((m) => m.inicioPage),
       },
       {
-        path: 'tab2',
+        path: 'catalogo',
         loadComponent: () =>
-          import('../catalogo/tab2.page').then((m) => m.Tab2Page),
+          import('../catalogo/catalogo.page').then((m) => m.catalogoPage),
       },
       {
-        path: 'tab3',
+        path: 'contato',
         loadComponent: () =>
-          import('../contato/tab3.page').then((m) => m.Tab3Page),
+          import('../contato/contato.page').then((m) => m.contatoPage),
       },
       {
-        path: 'quem-somos',
+        path: 'quemSomos',
         loadComponent: () =>
-          import('../quem-somos/quem-somos.page').then((m) => m.QuemSomosPage),
+          import('../quemSomos/quemSomos.page').then((m) => m.quemSomosPage),
       },
       {
         path: 'endereco',
         loadComponent: () =>
-          import('../endereco/endereco.page').then((m) => m.EnderecoPage),
+          import('../endereco/endereco.page').then((m) => m.enderecoPage),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/inicio',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/inicio',
     pathMatch: 'full',
   },
 ];

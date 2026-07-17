@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'app-contato',
+  templateUrl: 'contato.page.html',
+  styleUrls: ['contato.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonIcon],
 })
-export class Tab3Page {}
+export class contatoPage {}
