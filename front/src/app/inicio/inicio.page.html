@@ -40,8 +40,7 @@
     <div class="produtos-grid">
       <div
         class="produto-card"
-        *ngFor="let produto of produtos"
-        [class.hidden]="!produtoVisivel(produto)"
+        *ngFor="let produto of produtosAtivos"
       >
         <div class="produto-imagem">{{ produto.icone }}</div>
   
