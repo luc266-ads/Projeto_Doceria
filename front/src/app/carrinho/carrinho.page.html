@@ -1,0 +1,232 @@
+<ion-content [fullscreen]="true" class="carrinho-page">
+  <header>
+    <div class="header-content">
+      <div class="logo">🍰 Doce Lar Doceria</div>
+      <div class="header-actions">
+        <button type="button" class="btn-voltar" (click)="irParaLoja()">← Voltar à loja</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page" [class.active]="paginaAtiva === 'carrinho'">
+    <div class="container">
+      <h1 class="page-title">Meu Carrinho</h1>
+      <p class="page-subtitle">Selecione os produtos que deseja comprar</p>
+
+      <div class="stepper">
+        <div class="step active">
+          <div class="circle">1</div>
+          Carrinho
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="circle">2</div>
+          Endereço
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="circle">3</div>
+          Confirmação
+        </div>
+      </div>
+
+      <div *ngIf="itens.length === 0" class="carrinho-vazio">
+        <div class="emoji">🛒</div>
+        <h3>Seu carrinho está vazio</h3>
+        <p>Que tal adicionar alguns doces deliciosos?</p>
+      </div>
+
+      <div *ngIf="itens.length > 0" class="carrinho-layout">
+        <div>
+          <div class="lista-header">
+            <div class="select-all" (click)="toggleTodos()">
+              <div class="checkbox" [class.checked]="todosMarcados"></div>
+              <span>Selecionar todos ({{ itens.length }})</span>
+            </div>
+            <button type="button" class="btn-excluir-todos" (click)="excluirTodos()">🗑 Excluir todos</button>
+          </div>
+
+          <div
+            class="produto-item"
+            *ngFor="let item of itens"
+            [class.removendo]="itemRemovendoId === item.id"
+          >
+            <div class="checkbox" [class.checked]="item.selecionado" (click)="toggleItem(item.id)"></div>
+            <div class="item-imagem">{{ item.imagem }}</div>
+            <div class="item-info">
+              <div class="item-nome">{{ item.nome }}</div>
+              <div class="item-descricao">{{ item.descricao }}</div>
+              <div class="item-qtd">
+                <button type="button" class="qtd-btn" (click)="alterarQtd(item.id, -1)">−</button>
+                <span class="qtd-valor">{{ item.quantidade }}</span>
+                <button type="button" class="qtd-btn" (click)="alterarQtd(item.id, 1)">+</button>
+              </div>
+            </div>
+            <div class="item-direita">
+              <span class="item-preco">R$ {{ formatarPreco(item.preco * item.quantidade) }}</span>
+              <button type="button" class="btn-remover-item" (click)="removerItem(item.id)">🗑 Remover</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="resumo-card">
+          <h3>Resumo</h3>
+          <div class="resumo-linha">
+            <span>Itens selecionados</span>
+            <span>{{ qtdSelecionada }}</span>
+          </div>
+          <div class="resumo-linha total">
+            <span>Subtotal</span>
+            <span>R$ {{ formatarPreco(subtotal) }}</span>
+          </div>
+          <button
+            type="button"
+            class="btn-avancar"
+            [disabled]="itensSelecionados.length === 0"
+            (click)="avancarParaCheckout()"
+          >
+            Avançar →
+          </button>
+          <p class="resumo-aviso">
+            {{
+              itensSelecionados.length === 0
+                ? 'Selecione ao menos 1 produto'
+                : itensSelecionados.length + ' produto(s) selecionado(s)'
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" [class.active]="paginaAtiva === 'checkout'">
+    <div class="container">
+      <button type="button" class="btn-voltar-carrinho" (click)="voltarParaCarrinho()">← Voltar ao carrinho</button>
+      <h1 class="page-title">Finalizar Pedido</h1>
+      <p class="page-subtitle">Confira o endereço de entrega e o resumo do seu pedido</p>
+
+      <div class="stepper">
+        <div class="step done">
+          <div class="circle">✓</div>
+          Carrinho
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+          <div class="circle">2</div>
+          Endereço
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="circle">3</div>
+          Confirmação
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <div>
+          <div class="card-secao">
+            <h3>📍 Endereço de Entrega</h3>
+
+            <p *ngIf="enderecos.length === 0" class="sem-endereco">Você ainda não possui endereços cadastrados.</p>
+
+            <div
+              class="endereco-card"
+              *ngFor="let endereco of enderecos"
+              [class.selecionado]="endereco.id === enderecoSelecionadoId"
+              (click)="selecionarEndereco(endereco.id)"
+            >
+              <div class="endereco-info">
+                <span *ngIf="endereco.principal" class="endereco-tag">Principal</span>
+                <p class="nome-destinatario">👤 {{ endereco.nomeDestinatario }}</p>
+                <p>
+                  {{ endereco.endereco }}, {{ endereco.numero
+                  }}{{ endereco.complemento ? ' - ' + endereco.complemento : '' }}
+                </p>
+                <p>{{ endereco.bairro }}, {{ endereco.cidade }}</p>
+                <p>CEP: {{ endereco.cep }}</p>
+              </div>
+              <div class="btn-radio" [class.checked]="endereco.id === enderecoSelecionadoId"></div>
+            </div>
+
+            <button type="button" class="btn-novo-endereco" (click)="toggleFormEndereco()">
+              {{ formAberto ? '− Fechar formulário' : '+ Adicionar novo endereço' }}
+            </button>
+
+            <div class="form-endereco" [class.aberto]="formAberto">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label for="f-nome">Nome de quem vai receber</label>
+                  <input id="f-nome" type="text" [(ngModel)]="formEndereco.nome" placeholder="Ex: Maria Silva" />
+                </div>
+                <div class="form-group full">
+                  <label for="f-endereco">Endereço</label>
+                  <input id="f-endereco" type="text" [(ngModel)]="formEndereco.endereco" placeholder="Ex: Rua das Flores" />
+                </div>
+                <div class="form-group">
+                  <label for="f-numero">Número</label>
+                  <input id="f-numero" type="text" [(ngModel)]="formEndereco.numero" placeholder="Ex: 123" />
+                </div>
+                <div class="form-group">
+                  <label for="f-complemento">Complemento</label>
+                  <input id="f-complemento" type="text" [(ngModel)]="formEndereco.complemento" placeholder="Ex: Apto 45 (opcional)" />
+                </div>
+                <div class="form-group">
+                  <label for="f-bairro">Bairro</label>
+                  <input id="f-bairro" type="text" [(ngModel)]="formEndereco.bairro" placeholder="Ex: Boa Viagem" />
+                </div>
+                <div class="form-group">
+                  <label for="f-cidade">Cidade</label>
+                  <input id="f-cidade" type="text" [(ngModel)]="formEndereco.cidade" placeholder="Ex: Recife" />
+                </div>
+                <div class="form-group">
+                  <label for="f-cep">CEP</label>
+                  <input id="f-cep" type="text" [(ngModel)]="formEndereco.cep" placeholder="Ex: 50000-000" />
+                </div>
+              </div>
+              <div class="form-acoes">
+                <button type="button" class="btn-salvar-endereco" (click)="salvarEndereco()">Salvar Endereço</button>
+                <button type="button" class="btn-cancelar-endereco" (click)="toggleFormEndereco()">Cancelar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-secao">
+            <h3>🧾 Resumo do Pedido</h3>
+            <div class="resumo-produto-linha" *ngFor="let item of itensSelecionados">
+              <div class="mini-img">{{ item.imagem }}</div>
+              <div class="info">
+                <div class="nome">{{ item.nome }}</div>
+                <div class="qtd">Quantidade: {{ item.quantidade }}</div>
+              </div>
+              <div class="preco">R$ {{ formatarPreco(item.preco * item.quantidade) }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resumo-card">
+          <h3>Total do Pedido</h3>
+          <div class="resumo-linha">
+            <span>Subtotal</span>
+            <span>R$ {{ formatarPreco(subtotal) }}</span>
+          </div>
+          <div class="resumo-linha">
+            <span>Taxa de entrega</span>
+            <span>R$ {{ formatarPreco(taxaEntrega) }}</span>
+          </div>
+          <div class="resumo-linha total">
+            <span>Total</span>
+            <span>R$ {{ formatarPreco(checkoutTotal) }}</span>
+          </div>
+          <button type="button" class="btn-finalizar" [disabled]="!temEndereco" (click)="finalizarPedido()">
+            Confirmar Pedido 🎉
+          </button>
+          <p class="resumo-aviso">
+            {{ temEndereco ? 'Endereço selecionado ✓' : 'Selecione um endereço para continuar' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" [class.show]="toastVisible">{{ toastMessage }}</div>
+</ion-content>

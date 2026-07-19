@@ -32,6 +32,11 @@ export const routes: Routes = [
           import('../endereco/endereco.page').then((m) => m.enderecoPage),
       },
       {
+        path: 'carrinho',
+        loadComponent: () =>
+          import('../carrinho/carrinho.page').then((m) => m.carrinhoPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/inicio',
         pathMatch: 'full',
