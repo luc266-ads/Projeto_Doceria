@@ -2,60 +2,49 @@
   <header>
     <div class="header-content">
       <div class="logo">🍰 Doce Lar Doceria</div>
-  
-      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
-  
-      <nav [class.active]="menuAberto">
-        <a href="#">Início</a>
-        <a href="#">Catálogo</a>
-        <a href="#">Contato</a>
-        <a href="#">Quem Somos</a>
-        <a href="#">Endereço</a>
-      </nav>
+      <div class="car-content"> <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+        <nav [class.active]="menuAberto">
+          <a href="#">Início</a>
+          <a href="#">Catálogo</a>
+          <a href="#">Contato</a>
+          <a href="#">Quem Somos</a>
+          <a href="#">Endereço</a>
+        </nav>
+        <img id="carrinho" src="\assets\imagem\shopping-cart .svg" alt="carrinho">
+      </div>
     </div>
+
   </header>
-  
+
   <section class="hero">
     <h1>Doces que encantam</h1>
     <p>Bolos, tortas e doces artesanais feitos com carinho</p>
   </section>
-  
   <div class="container">
+
     <h2 class="section-title">Categorias</h2>
-  
     <div class="categorias">
-      <div
-        class="categoria-card"
-        *ngFor="let cat of categorias"
-        [class.active]="categoriaSelecionada === cat.valor"
-        (click)="selecionarCategoria(cat.valor)"
-      >
+      <div class="categoria-card" *ngFor="let cat of categorias" [class.active]="categoriaSelecionada === cat.valor"
+        (click)="selecionarCategoria(cat.valor)">
         <div class="categoria-icon">{{ cat.icone }}</div>
         <h3>{{ cat.nome }}</h3>
       </div>
     </div>
-  
+
     <h2 class="section-title">Destaques</h2>
-  
     <div class="produtos-grid">
-      <div
-        class="produto-card"
-        *ngFor="let produto of produtosAtivos"
-      >
+      <div class="produto-card" *ngFor="let produto of produtosAtivos">
         <div class="produto-imagem">{{ produto.icone }}</div>
-  
+
         <div class="produto-info">
           <h3 class="produto-nome">{{ produto.nome }}</h3>
           <p class="produto-descricao">{{ produto.descricao }}</p>
-  
+
           <div class="produto-footer">
             <span class="produto-preco">R$ {{ produto.preco }}</span>
-  
-            <button
-              class="btn-adicionar"
-              #btn
-              (click)="adicionar(btn)"
-            >
+
+            <button class="btn-adicionar" #btn (click)="adicionar(btn)">
               Adicionar
             </button>
           </div>
@@ -63,7 +52,7 @@
       </div>
     </div>
   </div>
-  
+
   <footer>
     <div class="footer-content">
       <div class="footer-section">

@@ -27,7 +27,6 @@ header {
 }
 
 .header-content {
-  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -38,7 +37,7 @@ header {
   color: white;
   font-size: 1.8rem;
   font-weight: bold;
- 
+
 }
 
 nav {
@@ -54,7 +53,7 @@ nav a {
   transition: all 0.3s;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  background-color: var(--doceria-caramel) ;
+  background-color: var(--doceria-caramel);
 }
 
 nav a:hover {
@@ -67,7 +66,7 @@ nav a:hover {
   background: none;
   border: none;
   color: white;
-  font-size: 1.8rem;
+  font-size: 50px;
   cursor: pointer;
 }
 
@@ -401,4 +400,15 @@ footer {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
+}
+
+#carrinho {
+  width: 50px;
+margin-left: 20px;
+
+}
+.car-content{
+display: flex;
+justify-content: end; 
+
 }
