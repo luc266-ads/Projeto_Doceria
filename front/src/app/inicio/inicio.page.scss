@@ -4,6 +4,74 @@
   box-sizing: border-box;
 }
 
+@keyframes cartBump {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  20% {
+    transform: scale(1.3) rotate(-12deg);
+  }
+
+  40% {
+    transform: scale(1.15) rotate(10deg);
+  }
+
+  60% {
+    transform: scale(1.25) rotate(-6deg);
+  }
+
+  80% {
+    transform: scale(1.05) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.45);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flyUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(0.9);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
 
 
 /* Container */
@@ -15,6 +83,10 @@
   margin: 0 auto;
   padding: 3rem 2rem;
 
+}
+
+.content {
+  display: flex;
 }
 
 /* Header */
@@ -403,13 +475,86 @@ footer {
   }
 }
 
-#carrinho {
-  width: 50px;
-  margin-left: 20px;
+/* Icone Carrinho */
+// badgePulse
+// flyUp
+// cartBump
+// ripple
+.cart-icon-wrapper {
+  animation: .5s;
+  animation: 5s;
+  position: relative;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.25s;
+  margin-left: 10px;
+}
+
+.cart-icon-wrapper:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cart-icon-wrapper img {
+  width: 30px;
+  height: 26px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: center;
+}
+
+.clickMaisUm {
+
+  animation: flyUp 3s;
+  animation: flyUp .6s;
+  background: linear-gradient(135deg, #b96a0fd7, #c0732b);
+  size: 4cm;
+  border-radius: 50%;
+  border: 2px solid rgba(51, 51, 51, 0.247);
+  position: absolute;
+  right: 0.7cm;
+
 
 }
-.car-content{
-display: flex;
-justify-content: end; 
+
+.clickMaisUm::content {
+  color: white;
+
+
+}
+
+.itensQtd {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #c76617;
+  position: absolute;
+  right: 70px;
+  bottom: 10px;
+
+
+}
+.itensQtd p {
+  margin-left: 10px;
+  margin-top: 6px;
+  color: white;
+
+
+
+}
+
+#carrinho {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin-right: 4px;
 
 }

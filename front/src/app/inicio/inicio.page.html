@@ -2,7 +2,9 @@
   <header>
     <div class="header-content">
       <div class="logo">🍰 Doce Lar Doceria</div>
-      <div class="car-content"> <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <div class="content">
+
+        <button class="menu-toggle" (click)="toggleMenu()">☰</button>
 
         <nav [class.active]="menuAberto">
           <button (click)="inicio()" href="#">Início</button>
@@ -10,10 +12,13 @@
           <button (click)="quemSomos()" href="#">Quem Somos</button>
           <button (click)="endereco()" href="#">Endereço</button>
         </nav>
-        <img id="carrinho" src="\assets\imagem\shopping-cart.svg" alt="carrinho">
+         <span class="clickMaisUm" [class.clickMaisUm]="animarClick"><p>+1</p></span>
+        <div class="cart-icon-wrapper" (click)="paginaCarrinho()">
+          <img id="carrinho" src="\assets\imagem\shopping-cart.svg" alt="carrinho" >
+        </div>
       </div>
+      <span class="itensQtd" [class.itensQtd]="animarItensQtd"><p>0</p></span>
     </div>
-
   </header>
 
   <section class="hero">
@@ -21,7 +26,6 @@
     <p>Bolos, tortas e doces artesanais feitos com carinho</p>
   </section>
   <div class="container">
-
     <h2 class="section-title">Categorias</h2>
     <div class="categorias">
       <div class="categoria-card" *ngFor="let cat of categorias" [class.active]="categoriaSelecionada === cat.valor"
@@ -31,7 +35,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Destaques</h2>
+    <h2 class="section-title">Produtos</h2>
     <div class="produtos-grid">
       <div class="produto-card" *ngFor="let produto of produtosAtivos">
         <div class="produto-imagem">{{ produto.icone }}</div>

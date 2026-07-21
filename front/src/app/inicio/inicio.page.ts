@@ -26,7 +26,9 @@ export class inicioPage {
   constructor(private router: Router) { }
   menuAberto = false;
   categoriaSelecionada = 'todos';
-
+  animarClick = true;
+  animarItensQtd = true;
+  
 
   categorias = [
     { nome: 'Todos', valor: 'todos', icone: '🍽️' },
@@ -93,7 +95,12 @@ export class inicioPage {
       btn.textContent = 'Adicionar';
       btn.style.background = '';
     }, 2000);
+
+
+    
   }
+
+
 
   inicio() {
     this.router.navigate(['/inicio']);
@@ -109,6 +116,10 @@ export class inicioPage {
   }
   endereco() {
     this.router.navigate(['/endereco']);
+
+  }
+  paginaCarrinho(){
+    this.router.navigate(['/carrinho']);
 
   }
 }
