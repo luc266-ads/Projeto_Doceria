@@ -5,13 +5,12 @@
       <div class="car-content"> <button class="menu-toggle" (click)="toggleMenu()">☰</button>
 
         <nav [class.active]="menuAberto">
-          <a href="#">Início</a>
-          <a href="#">Catálogo</a>
-          <a href="#">Contato</a>
-          <a href="#">Quem Somos</a>
-          <a href="#">Endereço</a>
+          <button (click)="inicio()" href="#">Início</button>
+          <button (click)="contato()" href="#">Contato</button>
+          <button (click)="quemSomos()" href="#">Quem Somos</button>
+          <button (click)="endereco()" href="#">Endereço</button>
         </nav>
-        <img id="carrinho" src="\assets\imagem\shopping-cart .svg" alt="carrinho">
+        <img id="carrinho" src="\assets\imagem\shopping-cart.svg" alt="carrinho">
       </div>
     </div>
 

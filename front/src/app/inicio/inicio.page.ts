@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 
 interface Produto {
@@ -69,19 +69,19 @@ export class inicioPage {
   filterProdutos() {
 
     if (this.categoriaSelecionada === 'todos') {
-  
+
       this.produtos.forEach(produto => {
         produto.ativo = true;
       });
-  
+
     } else {
-  
+
       this.produtos.forEach(produto => {
         produto.ativo = produto.categoria === this.categoriaSelecionada;
       });
-  
+
     }
-  
+
     this.produtosAtivos = this.produtos.filter(produto => produto.ativo);
   }
 
@@ -95,7 +95,22 @@ export class inicioPage {
     }, 2000);
   }
 
+  inicio() {
+    this.router.navigate(['/inicio']);
 
+  }
+  contato() {
+    this.router.navigate(['/contato']);
+
+  }
+  quemSomos() {
+    this.router.navigate(['/quemSomos']);
+
+  }
+  endereco() {
+    this.router.navigate(['/endereco']);
+
+  }
 }
 
 

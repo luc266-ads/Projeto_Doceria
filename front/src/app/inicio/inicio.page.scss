@@ -46,7 +46,7 @@ nav {
 
 }
 
-nav a {
+nav button {
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -56,7 +56,7 @@ nav a {
   background-color: var(--doceria-caramel);
 }
 
-nav a:hover {
+nav button:hover {
   background: rgba(245, 0, 0, 0.2);
   transform: translateY(-2px);
 }
@@ -353,8 +353,9 @@ footer {
     display: flex;
   }
 
-  nav a {
+  nav button {
     padding: 1rem;
+    margin-bottom: 1px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -404,7 +405,7 @@ footer {
 
 #carrinho {
   width: 50px;
-margin-left: 20px;
+  margin-left: 20px;
 
 }
 .car-content{
