@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { NgFor } from '@angular/common';
 
 interface Produto {
   nome: string;
@@ -19,15 +19,18 @@ interface Produto {
   styleUrls: ['inicio.page.scss'],
   imports: [
     IonContent,
-    NgFor,
+    CommonModule,
   ],
 })
 export class inicioPage {
   constructor(private router: Router) { }
   menuAberto = false;
   categoriaSelecionada = 'todos';
-  animarClick = true;
-  animarItensQtd = true;
+  animarClick = false;
+  animarCarrinho = false;
+  animarContagemItem= false;
+  mostrarContagem = false;
+  contador = 0;
   
 
   categorias = [
@@ -94,11 +97,34 @@ export class inicioPage {
     setTimeout(() => {
       btn.textContent = 'Adicionar';
       btn.style.background = '';
-    }, 2000);
+    }, 1000);
+    
+    this.contador++
+    
+    this.mostrarContagem = true
+    this.animarClick = true
+    this.animarCarrinho = true
+    this.animarContagemItem = true
 
+    setTimeout(() => {
+      this.mostrarContagem = false;
+    }, 200);
+  
+    setTimeout(() => {
+      this.animarClick = false;
+    }, 200);
 
+    setTimeout(() => {
+      this.animarCarrinho = false;
+    }, 1000);
+    setTimeout(() => {
+      this.animarContagemItem = false;
+    }, 1000);
+    
+    
     
   }
+
 
 
 

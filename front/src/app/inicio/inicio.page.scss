@@ -493,7 +493,7 @@ footer {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
   transition: background 0.25s;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .cart-icon-wrapper:hover {
@@ -525,7 +525,7 @@ footer {
 
 }
 
-.clickMaisUm::content {
+.clickMaisUm p {
   color: white;
 
 
@@ -550,8 +550,13 @@ footer {
 
 
 }
+.contagemItem{
+animation: badgePulse .3s;
 
-#carrinho {
+}
+
+.carrinho {
+  animation: cartBump .3s;
   display: flex;
   justify-content: center;
   height: 50px;
