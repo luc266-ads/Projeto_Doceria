@@ -13,13 +13,17 @@
           <button (click)="endereco()" href="#">Endereço</button>
         </nav>
         <div *ngIf="mostrarContagem">
-         <span class="clickMaisUm" [class.clickMaisUm]="animarClick"><p>+1</p></span>
+          <span class="clickMaisUm" [class.clickMaisUm]="animarClick">
+            <p>+1</p>
+          </span>
         </div>
         <div class="cart-icon-wrapper" (click)="paginaCarrinho()">
-          <img class="carrinho" [class.carrinho]="animarCarrinho" src="\assets\imagem\shopping-cart.svg" alt="carrinho" >
+          <img class="carrinho" [class.carrinho]="animarCarrinho" src="\assets\imagem\shopping-cart.svg" alt="carrinho">
         </div>
       </div>
-      <span class="itensQtd"><p class="contagemItem" [class.contagemItem]="animarContagemItem">{{contador}}</p></span>
+      <span class="itensQtd">
+        <p class="contagemItem" [class.contagemItem]="animarContagemItem">{{contador}}</p>
+      </span>
     </div>
   </header>
 
@@ -32,7 +36,7 @@
     <div class="categorias">
       <div class="categoria-card" *ngFor="let cat of categorias" [class.active]="categoriaSelecionada === cat.valor"
         (click)="selecionarCategoria(cat.valor)">
-        <div class="categoria-icon">{{ cat.icone }}</div>
+        <div class="categoria-icon">{{ cat.imagem }}</div>
         <h3>{{ cat.nome }}</h3>
       </div>
     </div>
@@ -40,7 +44,7 @@
     <h2 class="section-title">Produtos</h2>
     <div class="produtos-grid">
       <div class="produto-card" *ngFor="let produto of produtosAtivos">
-        <div class="produto-imagem">{{ produto.icone }}</div>
+        <div class="produto-imagem">{{ produto.imagem }}</div>
 
         <div class="produto-info">
           <h3 class="produto-nome">{{ produto.nome }}</h3>
@@ -49,7 +53,12 @@
           <div class="produto-footer">
             <span class="produto-preco">R$ {{ produto.preco }}</span>
 
-            <button class="btn-adicionar" #btn (click)="adicionar(btn)">
+            <button class="btn-adicionar" #btn (click)="adicionar( btn,
+            produto.nome,
+            produto.preco,
+            produto.categoria,
+            produto.imagem
+            )">
               Adicionar
             </button>
           </div>
