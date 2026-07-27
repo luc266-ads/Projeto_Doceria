@@ -3,6 +3,10 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
+import { carrinhoService } from '../servicesCarrinho/carrinhoService';
+
+
+
 
 interface ItemCarrinho {
   id: number;
@@ -42,7 +46,9 @@ interface FormEndereco {
   styleUrls: ['./carrinho.page.scss'],
   imports: [IonContent, NgFor, NgIf, FormsModule],
 })
+ 
 export class carrinhoPage {
+  constructor(private router: Router, public carrinhoService: carrinhoService ) {}
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;
@@ -61,7 +67,7 @@ export class carrinhoPage {
   };
 
   itens: ItemCarrinho[] = [
-    { id: 1, nome: 'Bolo Red Velvet', descricao: 'Bolo cremoso com cream cheese', preco: 89.9, imagem: '🍰', quantidade: 1, selecionado: true },
+    { id: 5, nome: 'Bolo Red Velvet', descricao: 'Bolo cremoso com cream cheese', preco: 89.9, imagem: '🍰', quantidade: 1, selecionado: true },
     { id: 4, nome: 'Brownie', descricao: 'Chocolate 70% cacau', preco: 12.9, imagem: '🍫', quantidade: 2, selecionado: true },
     { id: 8, nome: 'Torta de Limão', descricao: 'Cremosa e refrescante', preco: 45, imagem: '🍋', quantidade: 1, selecionado: false },
     { id: 11, nome: 'Combo Festa', descricao: 'Bolo + 12 docinhos + 6 salgados', preco: 135, imagem: '🎁', quantidade: 1, selecionado: true },
@@ -83,12 +89,12 @@ export class carrinhoPage {
 
   enderecoSelecionadoId: number | null = 1;
 
-  constructor(private router: Router) {}
+
 
   get itensSelecionados(): ItemCarrinho[] {
     return this.itens.filter((item) => item.selecionado);
   }
-
+  
   get todosMarcados(): boolean {
     return this.itens.length > 0 && this.itens.every((item) => item.selecionado);
   }
@@ -115,6 +121,7 @@ export class carrinhoPage {
 
   formatarPreco(valor: number): string {
     return valor.toFixed(2).replace('.', ',');
+
   }
 
   showToast(mensagem: string): void {

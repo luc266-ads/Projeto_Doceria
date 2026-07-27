@@ -2,6 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { carrinhoService } from '../servicesCarrinho/carrinhoService';
+
+
+interface ItemCarrinho {
+  nome: string;
+  descricao: string;
+  preco: string;
+  imagem: string;
+  categoria: string;
+  ativo: boolean;
+}
 
 interface Produto {
   nome: string;
@@ -11,6 +22,7 @@ interface Produto {
   categoria: string;
   ativo: boolean;
 }
+
 
 
 @Component({
@@ -23,7 +35,7 @@ interface Produto {
   ],
 })
 export class inicioPage {
-  constructor(private router: Router) { }
+  constructor(private router: Router, public carroService: carrinhoService) { }
   menuAberto = false;
   categoriaSelecionada = 'todos';
   nomeSelecionada = '';
@@ -63,6 +75,7 @@ export class inicioPage {
     { nome: 'Combo Aniversário', descricao: 'Bolo personalizado + 20 brigadeiros', preco: '159,90', imagem: '🎉', categoria: 'combos', ativo: true },
     { nome: 'Combo Café', descricao: 'Bolo fatia + brownie + cookies', preco: '35,00', imagem: '☕', categoria: 'combos', ativo: true }
   ];
+
 
   produtosAtivos = this.produtos.filter(u => u.ativo);
 
@@ -136,16 +149,19 @@ export class inicioPage {
       this.animarContagemItem = false;
     }, 500);
 
-    console.log(
-      `
-  Nome: ${this.nomeSelecionada}
-  Descricao: ${this.descricaoSelecionada}
-  Preco: ${this.precoSelecionada}
-  Imagem: ${this.imagemSelecionada}`)
 
-
+    this.carroService.itens.push({
+      nome: this.nomeSelecionada,
+      descricao: this.descricaoSelecionada,
+      preco: this.precoSelecionada,
+      imagem: this.imagemSelecionada,
+      categoria: this.categoriaSelecionada,
+      selecionado: false
+    });
+    this.carroService.adicionarCarinho();
 
   }
+
 
 
 
