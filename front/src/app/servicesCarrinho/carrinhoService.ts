@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 interface ItemCarrinho {
+  id: number;
   nome: string;
   descricao: string;
   preco: string;
@@ -52,9 +53,5 @@ export class carrinhoService {
     },
   ];
 
- adicionarCarinho (){
-  console.log(this.itens)
 
-
- }
 }

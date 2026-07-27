@@ -48,7 +48,7 @@ interface FormEndereco {
 })
  
 export class carrinhoPage {
-  constructor(private router: Router, public carrinhoService: carrinhoService ) {}
+  constructor(private router: Router, public carroService: carrinhoService ) {}
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;

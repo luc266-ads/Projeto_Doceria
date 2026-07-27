@@ -54,6 +54,7 @@
             <span class="produto-preco">R$ {{ produto.preco }}</span>
 
             <button class="btn-adicionar" #btn (click)="adicionar( btn,
+            produto.id,
             produto.nome,
             produto.preco,
             produto.categoria,
