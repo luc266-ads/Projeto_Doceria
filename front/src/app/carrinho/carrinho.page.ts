@@ -46,15 +46,15 @@ interface FormEndereco {
   styleUrls: ['./carrinho.page.scss'],
   imports: [IonContent, NgFor, NgIf, FormsModule],
 })
- 
+
 export class carrinhoPage {
-  constructor(private router: Router, public carroService: carrinhoService ) {}
+  constructor(private router: Router, public carroService: carrinhoService) { }
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;
   toastVisible = false;
   toastMessage = '';
-  readonly taxaEntrega = 8;
+
 
   formEndereco: FormEndereco = {
     nome: '',
@@ -66,12 +66,12 @@ export class carrinhoPage {
     cep: '',
   };
 
-  itens: ItemCarrinho[] = [
-    { id: 5, nome: 'Bolo Red Velvet', descricao: 'Bolo cremoso com cream cheese', preco: 89.9, imagem: '🍰', quantidade: 1, selecionado: true },
-    { id: 4, nome: 'Brownie', descricao: 'Chocolate 70% cacau', preco: 12.9, imagem: '🍫', quantidade: 2, selecionado: true },
-    { id: 8, nome: 'Torta de Limão', descricao: 'Cremosa e refrescante', preco: 45, imagem: '🍋', quantidade: 1, selecionado: false },
-    { id: 11, nome: 'Combo Festa', descricao: 'Bolo + 12 docinhos + 6 salgados', preco: 135, imagem: '🎁', quantidade: 1, selecionado: true },
-  ];
+
+  adicionarItem() {
+    this.carroService.itens
+
+
+  }
 
   enderecos: Endereco[] = [
     {
@@ -87,38 +87,8 @@ export class carrinhoPage {
     },
   ];
 
-  enderecoSelecionadoId: number | null = 1;
 
-
-
-  get itensSelecionados(): ItemCarrinho[] {
-    return this.itens.filter((item) => item.selecionado);
-  }
   
-  get todosMarcados(): boolean {
-    return this.itens.length > 0 && this.itens.every((item) => item.selecionado);
-  }
-
-  get subtotal(): number {
-    return this.itensSelecionados.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-  }
-
-  get qtdSelecionada(): number {
-    return this.itensSelecionados.reduce((acc, item) => acc + item.quantidade, 0);
-  }
-
-  get checkoutTotal(): number {
-    return this.subtotal + this.taxaEntrega;
-  }
-
-  get enderecoSelecionado(): Endereco | undefined {
-    return this.enderecos.find((endereco) => endereco.id === this.enderecoSelecionadoId);
-  }
-
-  get temEndereco(): boolean {
-    return !!this.enderecoSelecionado;
-  }
-
   formatarPreco(valor: number): string {
     return valor.toFixed(2).replace('.', ',');
 
@@ -133,21 +103,21 @@ export class carrinhoPage {
   }
 
   toggleItem(id: number): void {
-    const item = this.itens.find((produto) => produto.id === id);
+    const item = this.carroService.itens.find((produto) => produto.id === id);
     if (item) {
       item.selecionado = !item.selecionado;
     }
   }
 
   toggleTodos(): void {
-    const marcarTodos = !this.todosMarcados;
-    this.itens.forEach((item) => {
+    const marcarTodos = !this.carroService.todosMarcados;
+    this.carroService.itens.forEach((item) => {
       item.selecionado = marcarTodos;
     });
   }
 
   alterarQtd(id: number, delta: number): void {
-    const item = this.itens.find((produto) => produto.id === id);
+    const item = this.carroService.itens.find((produto) => produto.id === id);
     if (item) {
       item.quantidade = Math.max(1, item.quantidade + delta);
     }
@@ -156,25 +126,25 @@ export class carrinhoPage {
   removerItem(id: number): void {
     this.itemRemovendoId = id;
     setTimeout(() => {
-      this.itens = this.itens.filter((item) => item.id !== id);
+      this.carroService.itens = this.carroService.itens.filter((item) => item.id !== id);
       this.itemRemovendoId = null;
       this.showToast('Produto removido do carrinho');
     }, 250);
   }
 
   excluirTodos(): void {
-    if (this.itens.length === 0) {
+    if (this.carroService.itens.length === 0) {
       return;
     }
 
     if (confirm('Deseja realmente excluir todos os produtos do carrinho?')) {
-      this.itens = [];
+      this.carroService.itens = [];
       this.showToast('Carrinho esvaziado');
     }
   }
 
   avancarParaCheckout(): void {
-    if (this.itensSelecionados.length === 0) {
+    if (this.carroService.itensSelecionados.length === 0) {
       return;
     }
 
@@ -192,7 +162,7 @@ export class carrinhoPage {
   }
 
   selecionarEndereco(id: number): void {
-    this.enderecoSelecionadoId = id;
+    this.carroService.enderecoSelecionadoId = id;
   }
 
   toggleFormEndereco(): void {
@@ -220,14 +190,14 @@ export class carrinhoPage {
     };
 
     this.enderecos = [...this.enderecos, novoEndereco];
-    this.enderecoSelecionadoId = novoEndereco.id;
+    this.carroService.enderecoSelecionadoId = novoEndereco.id;
     this.formEndereco = { nome: '', endereco: '', numero: '', complemento: '', bairro: '', cidade: '', cep: '' };
     this.formAberto = false;
     this.showToast('Endereço adicionado com sucesso!');
   }
 
   finalizarPedido(): void {
-    if (!this.temEndereco) {
+    if (!this.carroService.temEndereco) {
       return;
     }
 

@@ -30,24 +30,24 @@
         </div>
       </div>
 
-      <div *ngIf="itens.length === 0" class="carrinho-vazio">
+      <div *ngIf="carroService.itens.length === 0" class="carrinho-vazio">
         <div class="emoji">🛒</div>
         <h3>Seu carrinho está vazio</h3>
         <p>Que tal adicionar alguns doces deliciosos?</p>
       </div>
 
-      <div *ngIf="itens.length > 0" class="carrinho-layout">
+      <div *ngIf="carroService.itens.length > 0" class="carrinho-layout">
         <div>
           <div class="lista-header">
             <div class="select-all" (click)="toggleTodos()">
-              <div class="checkbox" [class.checked]="todosMarcados"></div>
-              <span>Selecionar todos ({{ itens.length }})</span>
+              <div class="checkbox" [class.checked]="carroService.todosMarcados"></div>
+              <span>Selecionar todos ({{ carroService.itens.length }})</span>
             </div>
             <button type="button" class="btn-excluir-todos" (click)="excluirTodos()">🗑 Excluir todos</button>
           </div>
           <div
             class="produto-item"
-            *ngFor="let item of itens"
+            *ngFor="let item of carroService.itens"
             [class.removendo]="itemRemovendoId === item.id"
           >
             <div class="checkbox" [class.checked]="item.selecionado" (click)="toggleItem(item.id)"></div>
@@ -72,25 +72,25 @@
           <h3>Resumo</h3>
           <div class="resumo-linha">
             <span>Itens selecionados</span>
-            <span>{{ qtdSelecionada }}</span>
+            <span>{{ carroService.qtdSelecionada }}</span>
           </div>
           <div class="resumo-linha total">
             <span>Subtotal</span>
-            <span>R$ {{ formatarPreco(subtotal) }}</span>
+            <span>R$ {{ formatarPreco(carroService.subtotal) }}</span>
           </div>
           <button
             type="button"
             class="btn-avancar"
-            [disabled]="itensSelecionados.length === 0"
+            [disabled]="carroService.itensSelecionados.length === 0"
             (click)="avancarParaCheckout()"
           >
             Avançar →
           </button>
           <p class="resumo-aviso">
             {{
-              itensSelecionados.length === 0
+              carroService.itensSelecionados.length === 0
                 ? 'Selecione ao menos 1 produto'
-                : itensSelecionados.length + ' produto(s) selecionado(s)'
+                : carroService.itensSelecionados.length + ' produto(s) selecionado(s)'
             }}
           </p>
         </div>
@@ -131,7 +131,7 @@
             <div
               class="endereco-card"
               *ngFor="let endereco of enderecos"
-              [class.selecionado]="endereco.id === enderecoSelecionadoId"
+              [class.selecionado]="endereco.id === carroService.enderecoSelecionadoId"
               (click)="selecionarEndereco(endereco.id)"
             >
               <div class="endereco-info">
@@ -144,7 +144,7 @@
                 <p>{{ endereco.bairro }}, {{ endereco.cidade }}</p>
                 <p>CEP: {{ endereco.cep }}</p>
               </div>
-              <div class="btn-radio" [class.checked]="endereco.id === enderecoSelecionadoId"></div>
+              <div class="btn-radio" [class.checked]="endereco.id === carroService.enderecoSelecionadoId"></div>
             </div>
 
             <button type="button" class="btn-novo-endereco" (click)="toggleFormEndereco()">
@@ -191,7 +191,7 @@
 
           <div class="card-secao">
             <h3>🧾 Resumo do Pedido</h3>
-            <div class="resumo-produto-linha" *ngFor="let item of itensSelecionados">
+            <div class="resumo-produto-linha" *ngFor="let item of carroService.itensSelecionados">
               <div class="mini-img">{{ item.imagem }}</div>
               <div class="info">
                 <div class="nome">{{ item.nome }}</div>
@@ -206,21 +206,21 @@
           <h3>Total do Pedido</h3>
           <div class="resumo-linha">
             <span>Subtotal</span>
-            <span>R$ {{ formatarPreco(subtotal) }}</span>
+            <span>R$ {{ formatarPreco(carroService.subtotal) }}</span>
           </div>
           <div class="resumo-linha">
             <span>Taxa de entrega</span>
-            <span>R$ {{ formatarPreco(taxaEntrega) }}</span>
+            <span>R$ {{ formatarPreco(carroService.taxaEntrega) }}</span>
           </div>
           <div class="resumo-linha total">
             <span>Total</span>
-            <span>R$ {{ formatarPreco(checkoutTotal) }}</span>
+            <span>R$ {{ formatarPreco(carroService.checkoutTotal) }}</span>
           </div>
-          <button type="button" class="btn-finalizar" [disabled]="!temEndereco" (click)="finalizarPedido()">
+          <button type="button" class="btn-finalizar" [disabled]="!carroService.temEndereco" (click)="finalizarPedido()">
             Confirmar Pedido 🎉
           </button>
           <p class="resumo-aviso">
-            {{ temEndereco ? 'Endereço selecionado ✓' : 'Selecione um endereço para continuar' }}
+            {{ carroService.temEndereco ? 'Endereço selecionado ✓' : 'Selecione um endereço para continuar' }}
           </p>
         </div>
       </div>
