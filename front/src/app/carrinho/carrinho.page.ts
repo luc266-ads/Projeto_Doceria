@@ -73,20 +73,7 @@ export class carrinhoPage {
 
   }
 
-  enderecos: Endereco[] = [
-    {
-      id: 1,
-      nomeDestinatario: 'Ana Souza',
-      endereco: 'Rua das Palmeiras',
-      numero: '245',
-      complemento: 'Apto 302',
-      bairro: 'Boa Viagem',
-      cidade: 'Recife',
-      cep: '51020-000',
-      principal: true,
-    },
-  ];
-
+  
 
   
   formatarPreco(valor: number): string {
@@ -186,10 +173,10 @@ export class carrinhoPage {
       bairro: bairro.trim(),
       cidade: cidade.trim(),
       cep: cep.trim(),
-      principal: this.enderecos.length === 0,
+      principal: this.carroService.enderecos.length === 0,
     };
 
-    this.enderecos = [...this.enderecos, novoEndereco];
+    this.carroService.enderecos = [...this.carroService.enderecos, novoEndereco];
     this.carroService.enderecoSelecionadoId = novoEndereco.id;
     this.formEndereco = { nome: '', endereco: '', numero: '', complemento: '', bairro: '', cidade: '', cep: '' };
     this.formAberto = false;

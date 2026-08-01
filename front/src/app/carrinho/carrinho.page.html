@@ -126,11 +126,11 @@
           <div class="card-secao">
             <h3>📍 Endereço de Entrega</h3>
 
-            <p *ngIf="enderecos.length === 0" class="sem-endereco">Você ainda não possui endereços cadastrados.</p>
+            <p *ngIf="carroService.enderecos.length === 0" class="sem-endereco">Você ainda não possui endereços cadastrados.</p>
 
             <div
               class="endereco-card"
-              *ngFor="let endereco of enderecos"
+              *ngFor="let endereco of carroService.enderecos"
               [class.selecionado]="endereco.id === carroService.enderecoSelecionadoId"
               (click)="selecionarEndereco(endereco.id)"
             >
