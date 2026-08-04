@@ -4,8 +4,9 @@ function validateProdutoData(body) {
   const requiredFields = [
     "nomeProduto" ,
     "descricao",
-    "quantidade",
-    "precoUnid" 
+    "imagem",
+    "precoUnid",
+    "categoria"
   ];
 
   const missingFields = requiredFields.filter((field) => {
@@ -24,8 +25,9 @@ function validateProdutoData(body) {
   const data = {
     nomeProduto: body.nomeProduto,
     descricao: body.descricao,
-    quantidade: body.quantidade,
+    imagem: body.imagem,
     precoUnid: body.precoUnid,
+    categoria: body.categoria,
   };
 
   return {

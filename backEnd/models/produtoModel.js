@@ -14,8 +14,9 @@ function addProduto(produtoData) {
     idProduto: nextId++,
     nomeProduto: produtoData.nomeProduto,
     descricao: produtoData.descricao,
-    quantidade: produtoData.quantidade,
+    imagem: produtoData.imagem,
     precoUnid: produtoData.precoUnid,
+    categoria: produtoData.categoria,
   };
 
   produtos.push(produto);
@@ -33,8 +34,9 @@ function updateProduto(id, produtoData) {
     ...produtos[index],
     nomeProduto: produtoData.nomeProduto,
     descricao: produtoData.descricao,
-    quantidade: produtoData.quantidade,
+    imagem: produtoData.imagem,
     precoUnid: produtoData.precoUnid,
+    categoria: produtoData.categoria,
   };
 
   produtos[index] = updatedproduto;
