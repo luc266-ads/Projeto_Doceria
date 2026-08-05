@@ -6,7 +6,7 @@ function getAllProdutos() {
 }
 
 function getProdutoById(id) {
-  return produtos.find((produto) => produto.id === id);
+  return produtos.find((produto) => produto.idProduto === id);
 }
 
 function addProduto(produtoData) {
