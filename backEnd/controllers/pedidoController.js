@@ -3,9 +3,11 @@ const pedidosModel = require('../models/pedidoModel');
 function validatePedidoData(body) {
   const requiredFields = [
     'nomeCliente',
-    'quantidade',
-    'numeroProduto',
-    'preco'
+    'enderecoCliente',
+    'complementoCliente',
+    'numeroRdCliente',
+    'precoTotal',
+    'formaPagamento',
   ];
 
   const missingFields = requiredFields.filter((field) => {
@@ -23,9 +25,12 @@ function validatePedidoData(body) {
 
   const data = {
     nomeCliente: body.nomeCliente,
-    quantidade: body.quantidade,
-    numeroProduto: body.numeroProduto,
-    preco: body.preco
+    enderecoCliente: body.enderecoCliente,
+    complementoCliente: body.complementoCliente,
+    numeroRdCliente: body.numeroRdCliente,
+    precoTotal: body.precoTotal,
+    formaPagamento: body.formaPagamento
+
   };
 
   return {
@@ -46,7 +51,7 @@ function getPedidos(req, res) {
 }
 
 function getPedidoById(req, res) {
-  const idPedido = parseInt(req.params.idPedido, 10);
+  const idPedido = parseInt(req.params.id, 10);
 
   if (Number.isNaN(idPedido)) {
     return res.status(400).json({
@@ -89,7 +94,7 @@ function createPedido(req, res) {
 }
 
 function updatePedido(req, res) {
-  const idPedido = parseInt(req.params.idPedido, 10);
+  const idPedido = parseInt(req.params.id, 10);
 
   if (Number.isNaN(idPedido)) {
     return res.status(400).json({
@@ -123,7 +128,7 @@ function updatePedido(req, res) {
 }
 
 function deletePedido(req, res) {
-  const idPedido = parseInt(req.params.idPedido, 10);
+  const idPedido = parseInt(req.params.id, 10);
 
   if (Number.isNaN(idPedido)) {
     return res.status(400).json({

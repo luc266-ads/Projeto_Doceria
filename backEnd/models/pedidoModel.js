@@ -6,16 +6,18 @@ function getAllpedidos() {
 }
 
 function getPedidoById(id) {
-  return pedidos.find((pedido) => pedido.id === id);
+  return pedidos.find((pedido) => pedido.idPedido === id);
 }
 
 function addPedido(pedidoData) {
   const pedido = {
     idPedido: nextId++,
     nomeCliente: pedidoData.nomeCliente,
-    quantidade: pedidoData.quantidade,
-    numeroProduto: pedidoData.numeroProduto,
-    preco: pedidoData.preco
+    enderecoCliente: pedidoData.enderecoCliente,
+    complementoCliente: pedidoData.complementoCliente,
+    numeroRdCliente: pedidoData.numeroRdCliente,
+    precoTotal: pedidoData.precoTotal,
+    formaPagamento: pedidoData.formaPagamento,
   };
 
   pedidos.push(pedido);
@@ -23,7 +25,7 @@ function addPedido(pedidoData) {
 }
 
 function updatePedido(id, pedidoData) {
-  const index = pedidos.findIndex((pedido) => pedido.id === id);
+  const index = pedidos.findIndex((pedido) => pedido.idPedido === id);
 
   if (index === -1) {
     return null;
@@ -32,9 +34,11 @@ function updatePedido(id, pedidoData) {
   const updatedPedido = {
     ...pedidos[index],
     nomeCliente: pedidoData.nomeCliente,
-    quantidade: pedidoData.quantidade,
-    numeroProduto: pedidoData.numeroProduto,
-    preco: pedidoData.preco
+    enderecoCliente: pedidoData.enderecoCliente,
+    complementoCliente: pedidoData.complementoCliente,
+    numeroRdCliente: pedidoData.numeroRdCliente,
+    precoTotal: pedidoData.precoTotal,
+    formaPagamento: pedidoData.formaPagamento,
    
   };
 
@@ -43,7 +47,7 @@ function updatePedido(id, pedidoData) {
 }
 
 function deletePedido(id) {
-  const index = pedidos.findIndex((pedido) => pedido.id === id);
+  const index = pedidos.findIndex((pedido) => pedido.idPedido === id);
 
   if (index === -1) {
     return false;
