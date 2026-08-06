@@ -42,7 +42,9 @@ export class carrinhoPage {
   formAberto = false;
   itemRemovendoId: number | null = null;
   toastVisible = false;
+  alertVisible = false
   toastMessage = '';
+  alertMessage = ''
 
 
   formEndereco: FormEndereco = {
@@ -77,6 +79,15 @@ export class carrinhoPage {
       this.toastVisible = false;
     }, 2200);
   }
+
+  showAlert(mensagem: string): void {
+    this.alertMessage = mensagem;
+    this.alertVisible = true;
+    setTimeout(() => {
+      this.alertVisible = false;
+    }, 2200);
+  }
+
 
   toggleItem(id: number): void {
     const item = this.carroService.itens.find((produto) => produto.id === id);
@@ -173,16 +184,15 @@ export class carrinhoPage {
     this.showToast('Endereço adicionado com sucesso!');
   }
 
-  finalizarPedido(): void {
-    if (!this.carroService.temEndereco ) {
-      return;
-    }
-
-    // if (this.carroService.formPagamento == null) {
+  finalizarPedido() {
+    if (!this.carroService.temEndereco || this.carroService.formPagamento.values != null) {
       
-    //   console.log("errado")
-    // }
+    this.showAlert('Preencha todos os campos obrigatórios');
+    }
+    else{
 
-    this.showToast('Pedido confirmado com sucesso! 🎉');
+      this.showToast('Pedido enviado com sucesso!')
+    }
+  
   }
 }
