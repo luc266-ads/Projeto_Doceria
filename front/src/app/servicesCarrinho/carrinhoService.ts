@@ -23,6 +23,10 @@ interface Endereco {
   principal: boolean;
 }
 
+interface FormPagamento {
+  pagamento: String;
+}     
+
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +39,9 @@ export class carrinhoService {
   enderecoSelecionadoId: number | null = 1;
 
   itens: ItemCarro[] = [];
+  formPagamento: FormPagamento[] = []
+  
+
   enderecos: Endereco[] = [
     {
       id: 1,
@@ -76,5 +83,5 @@ export class carrinhoService {
   get temEndereco(): boolean {
     return !!this.enderecoSelecionado;
   }
-
+ 
 }

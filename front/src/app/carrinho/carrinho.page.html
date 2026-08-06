@@ -45,11 +45,8 @@
             </div>
             <button type="button" class="btn-excluir-todos" (click)="excluirTodos()">🗑 Excluir todos</button>
           </div>
-          <div
-            class="produto-item"
-            *ngFor="let item of carroService.itens"
-            [class.removendo]="itemRemovendoId === item.id"
-          >
+          <div class="produto-item" *ngFor="let item of carroService.itens"
+            [class.removendo]="itemRemovendoId === item.id">
             <div class="checkbox" [class.checked]="item.selecionado" (click)="toggleItem(item.id)"></div>
             <div class="item-imagem">{{ item.imagem }}</div>
             <div class="item-info">
@@ -78,19 +75,15 @@
             <span>Subtotal</span>
             <span>R$ {{ formatarPreco(carroService.subtotal) }}</span>
           </div>
-          <button
-            type="button"
-            class="btn-avancar"
-            [disabled]="carroService.itensSelecionados.length === 0"
-            (click)="avancarParaCheckout()"
-          >
+          <button type="button" class="btn-avancar" [disabled]="carroService.itensSelecionados.length === 0"
+            (click)="avancarParaCheckout()">
             Avançar →
           </button>
           <p class="resumo-aviso">
             {{
-              carroService.itensSelecionados.length === 0
-                ? 'Selecione ao menos 1 produto'
-                : carroService.itensSelecionados.length + ' produto(s) selecionado(s)'
+            carroService.itensSelecionados.length === 0
+            ? 'Selecione ao menos 1 produto'
+            : carroService.itensSelecionados.length + ' produto(s) selecionado(s)'
             }}
           </p>
         </div>
@@ -126,14 +119,12 @@
           <div class="card-secao">
             <h3>📍 Endereço de Entrega</h3>
 
-            <p *ngIf="carroService.enderecos.length === 0" class="sem-endereco">Você ainda não possui endereços cadastrados.</p>
+            <p *ngIf="carroService.enderecos.length === 0" class="sem-endereco">Você ainda não possui endereços
+              cadastrados.</p>
 
-            <div
-              class="endereco-card"
-              *ngFor="let endereco of carroService.enderecos"
+            <div class="endereco-card" *ngFor="let endereco of carroService.enderecos"
               [class.selecionado]="endereco.id === carroService.enderecoSelecionadoId"
-              (click)="selecionarEndereco(endereco.id)"
-            >
+              (click)="selecionarEndereco(endereco.id)">
               <div class="endereco-info">
                 <span *ngIf="endereco.principal" class="endereco-tag">Principal</span>
                 <p class="nome-destinatario">👤 {{ endereco.nomeDestinatario }}</p>
@@ -159,7 +150,8 @@
                 </div>
                 <div class="form-group full">
                   <label for="f-endereco">Endereço</label>
-                  <input id="f-endereco" type="text" [(ngModel)]="formEndereco.endereco" placeholder="Ex: Rua das Flores" />
+                  <input id="f-endereco" type="text" [(ngModel)]="formEndereco.endereco"
+                    placeholder="Ex: Rua das Flores" />
                 </div>
                 <div class="form-group">
                   <label for="f-numero">Número</label>
@@ -167,7 +159,8 @@
                 </div>
                 <div class="form-group">
                   <label for="f-complemento">Complemento</label>
-                  <input id="f-complemento" type="text" [(ngModel)]="formEndereco.complemento" placeholder="Ex: Apto 45 (opcional)" />
+                  <input id="f-complemento" type="text" [(ngModel)]="formEndereco.complemento"
+                    placeholder="Ex: Apto 45 (opcional)" />
                 </div>
                 <div class="form-group">
                   <label for="f-bairro">Bairro</label>
@@ -216,7 +209,20 @@
             <span>Total</span>
             <span>R$ {{ formatarPreco(carroService.checkoutTotal) }}</span>
           </div>
-          <button type="button" class="btn-finalizar" [disabled]="!carroService.temEndereco" (click)="finalizarPedido()">
+          <div class="card-secao">
+            <h3>🧾 Pagamento</h3>
+            <div class="form-group">
+              <label for="f-pagamento">Forma de pagamento</label>
+              <select id="f-pagamento" [(ngModel)]="carroService.formPagamento">
+                <option value="pix">Pix</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="cartaoCredito">Cartão de Crédito</option>
+                <option value="cartaoDebito">Cartão de Debito</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn-finalizar" [disabled]="!carroService.temEndereco"
+            (click)="finalizarPedido()">
             Confirmar Pedido 🎉
           </button>
           <p class="resumo-aviso">
@@ -226,6 +232,9 @@
       </div>
     </div>
   </div>
+
+
+
 
   <div class="toast" [class.show]="toastVisible">{{ toastMessage }}</div>
 </ion-content>

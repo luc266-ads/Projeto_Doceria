@@ -7,17 +7,6 @@ import { carrinhoService } from '../servicesCarrinho/carrinhoService';
 
 
 
-
-interface ItemCarrinho {
-  id: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagem: string;
-  quantidade: number;
-  selecionado: boolean;
-}
-
 interface Endereco {
   id: number;
   nomeDestinatario: string;
@@ -156,6 +145,7 @@ export class carrinhoPage {
     this.formAberto = !this.formAberto;
   }
 
+ 
   salvarEndereco(): void {
     const { nome, endereco, numero, complemento, bairro, cidade, cep } = this.formEndereco;
 
@@ -184,9 +174,14 @@ export class carrinhoPage {
   }
 
   finalizarPedido(): void {
-    if (!this.carroService.temEndereco) {
+    if (!this.carroService.temEndereco ) {
       return;
     }
+
+    // if (this.carroService.formPagamento == null) {
+      
+    //   console.log("errado")
+    // }
 
     this.showToast('Pedido confirmado com sucesso! 🎉');
   }
