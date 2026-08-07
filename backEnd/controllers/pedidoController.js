@@ -5,6 +5,7 @@ function validatePedidoData(body) {
     'nomeCliente',
     'enderecoCliente',
     'complementoCliente',
+    'bairroCliente',
     'numeroRdCliente',
     'precoTotal',
     'formaPagamento',
@@ -27,6 +28,7 @@ function validatePedidoData(body) {
     nomeCliente: body.nomeCliente,
     enderecoCliente: body.enderecoCliente,
     complementoCliente: body.complementoCliente,
+    bairroCliente: body.bairroCliente,
     numeroRdCliente: body.numeroRdCliente,
     precoTotal: body.precoTotal,
     formaPagamento: body.formaPagamento

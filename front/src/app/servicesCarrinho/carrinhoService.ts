@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-interface ItemCarro{
+interface ItemCarro {
   id: number;
   nome: string;
   descricao: string;
@@ -24,9 +24,18 @@ interface Endereco {
 }
 
 interface FormPagamento {
-  pagamento: String;
-}     
+  pagamento: string;
+}
 
+interface PedidoEntrega {
+  nomeUser: string;
+  enderecoUser: string;
+  complementoUser: string;
+  bairroUser: string;
+  numeroUser: string;
+  precoTotal: number;
+  formaPagmento: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +49,7 @@ export class carrinhoService {
 
   itens: ItemCarro[] = [];
   formPagamento: FormPagamento[] = []
-  
+
 
   enderecos: Endereco[] = [
     {
@@ -56,10 +65,14 @@ export class carrinhoService {
     },
   ];
 
+  limparCarrinho() {
+    this.itens = [];
+  }
+
   get itensSelecionados(): ItemCarro[] {
     return this.itens.filter((item) => item.selecionado);
   }
-  
+
   get todosMarcados(): boolean {
     return this.itens.length > 0 && this.itens.every((item) => item.selecionado);
   }
@@ -83,5 +96,5 @@ export class carrinhoService {
   get temEndereco(): boolean {
     return !!this.enderecoSelecionado;
   }
- 
+
 }

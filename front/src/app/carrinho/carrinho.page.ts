@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
 import { carrinhoService } from '../servicesCarrinho/carrinhoService';
+import { Api } from '../serviceApi/api';
 
 
 
@@ -37,7 +38,7 @@ interface FormEndereco {
 })
 
 export class carrinhoPage {
-  constructor(private router: Router, public carroService: carrinhoService) { }
+  constructor(private router: Router, public carroService: carrinhoService, private api: Api) { }
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;
@@ -61,12 +62,8 @@ export class carrinhoPage {
   adicionarItem() {
     this.carroService.itens
 
-
   }
 
-  
-
-  
   formatarPreco(valor: number): string {
     return valor.toFixed(2).replace('.', ',');
 
@@ -156,7 +153,7 @@ export class carrinhoPage {
     this.formAberto = !this.formAberto;
   }
 
- 
+
   salvarEndereco(): void {
     const { nome, endereco, numero, complemento, bairro, cidade, cep } = this.formEndereco;
 
@@ -165,7 +162,7 @@ export class carrinhoPage {
       return;
     }
 
-    const novoEndereco: Endereco = {
+    const novoEndereco: Endereco = {    
       id: Date.now(),
       nomeDestinatario: nome.trim(),
       endereco: endereco.trim(),
@@ -186,13 +183,19 @@ export class carrinhoPage {
 
   finalizarPedido() {
     if (!this.carroService.temEndereco || this.carroService.formPagamento.values != null) {
-      
-    this.showAlert('Preencha todos os campos obrigatórios');
+
+      this.showAlert('Preencha todos os campos obrigatórios');
     }
-    else{
+    else {
 
       this.showToast('Pedido enviado com sucesso!')
+      setTimeout(() =>{
+        this.carroService.limparCarrinho()
+        this.router.navigate(['/tabs/inicio']);
+      }, 2300)
+     
+
+
     }
-  
   }
 }
