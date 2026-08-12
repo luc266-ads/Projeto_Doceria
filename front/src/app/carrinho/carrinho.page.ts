@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
 import { carrinhoService } from '../servicesCarrinho/carrinhoService';
-import { Api } from '../serviceApi/api';
+
 
 
 
@@ -38,7 +38,7 @@ interface FormEndereco {
 })
 
 export class carrinhoPage {
-  constructor(private router: Router, public carroService: carrinhoService, private api: Api) { }
+  constructor(private router: Router, public carroService: carrinhoService) { }
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;
@@ -193,9 +193,7 @@ export class carrinhoPage {
         this.carroService.limparCarrinho()
         this.router.navigate(['/tabs/inicio']);
       }, 2300)
-     
-
-
+    
     }
   }
 }

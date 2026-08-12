@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Api } from '../serviceApi/api';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 
 interface ItemCarro {
   id: number;
@@ -44,11 +47,12 @@ interface PedidoEntrega {
 export class carrinhoService {
 
 
+
   readonly taxaEntrega = 8;
   enderecoSelecionadoId: number | null = 1;
-
   itens: ItemCarro[] = [];
   formPagamento: FormPagamento[] = []
+  pedido: PedidoEntrega[] = [];
 
 
   enderecos: Endereco[] = [
@@ -96,5 +100,6 @@ export class carrinhoService {
   get temEndereco(): boolean {
     return !!this.enderecoSelecionado;
   }
+
 
 }

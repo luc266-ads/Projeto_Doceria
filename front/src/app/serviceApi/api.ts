@@ -48,24 +48,6 @@ export class Api {
       .pipe(catchError(this.tratarErro));
   }
 
-  // ============================
-  // PEDIDOS
-  // ============================
-
-  cadastrarPedidos(dados: any): Observable<any> {
-    return this.http.post(this.apiUrlPd, dados)
-      .pipe(catchError(this.tratarErro));
-  }
-
-  listarPedidos(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrlPd)
-      .pipe(catchError(this.tratarErro));
-  }
-
-  deletarPedidos(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrlPd}/${id}`)
-      .pipe(catchError(this.tratarErro));
-  }
 
   // ============================
   // PRODUTOS
@@ -83,6 +65,25 @@ export class Api {
 
   deletarProdutos(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrlPr}/${id}`)
+      .pipe(catchError(this.tratarErro));
+  }
+
+    // ============================
+  // PEDIDOS
+  // ============================
+
+  cadastrarPedidos(dados: any): Observable<any> {
+    return this.http.post(this.apiUrlPd, dados)
+      .pipe(catchError(this.tratarErro));
+  }
+
+  listarPedidos(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrlPd)
+      .pipe(catchError(this.tratarErro));
+  }
+
+  deletarPedidos(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrlPd}/${id}`)
       .pipe(catchError(this.tratarErro));
   }
 }
