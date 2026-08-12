@@ -86,4 +86,5 @@ export class Api {
     return this.http.delete(`${this.apiUrlPd}/${id}`)
       .pipe(catchError(this.tratarErro));
   }
+
 }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Api } from '../serviceApi/api';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+
 
 interface ItemCarro {
   id: number;
@@ -30,15 +28,7 @@ interface FormPagamento {
   pagamento: string;
 }
 
-interface PedidoEntrega {
-  nomeUser: string;
-  enderecoUser: string;
-  complementoUser: string;
-  bairroUser: string;
-  numeroUser: string;
-  precoTotal: number;
-  formaPagmento: string;
-}
+
 
 @Injectable({
   providedIn: 'root',
@@ -50,9 +40,18 @@ export class carrinhoService {
 
   readonly taxaEntrega = 8;
   enderecoSelecionadoId: number | null = 1;
+
+  nomeUser = " ";
+  enderecoUser = " ";
+  complementoUser = " ";
+  bairroUser = " ";
+  numeroUser = " ";
+  precoTotal = 0;
+  formaPagmento = " ";
+
   itens: ItemCarro[] = [];
-  formPagamento: FormPagamento[] = []
-  pedido: PedidoEntrega[] = [];
+  formPagamento: FormPagamento[] = [];
+
 
 
   enderecos: Endereco[] = [

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
 import { carrinhoService } from '../servicesCarrinho/carrinhoService';
+import { PedidosService } from '../servicePedidos/pedidos-service';
+import { push } from 'ionicons/icons';
 
 
 
@@ -38,7 +40,27 @@ interface FormEndereco {
 })
 
 export class carrinhoPage {
-  constructor(private router: Router, public carroService: carrinhoService) { }
+  constructor(private router: Router, public carroService: carrinhoService, private pedido: PedidosService) { }
+  
+  pedidoEntrega: {
+    nomeUser: string;
+    enderecoUser: string;
+    complementoUser: string;
+    bairroUser: string;
+    numeroUser: string;
+    precoTotal: number;
+    formaPagmento: string;
+  } = {
+      nomeUser: "",
+      enderecoUser: "",
+      complementoUser: "",
+      bairroUser: "",
+      numeroUser: "",
+      precoTotal: 0,
+      formaPagmento: "",
+    };
+
+
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
   itemRemovendoId: number | null = null;
@@ -162,7 +184,7 @@ export class carrinhoPage {
       return;
     }
 
-    const novoEndereco: Endereco = {    
+    const novoEndereco: Endereco = {
       id: Date.now(),
       nomeDestinatario: nome.trim(),
       endereco: endereco.trim(),
@@ -182,18 +204,23 @@ export class carrinhoPage {
   }
 
   finalizarPedido() {
+
     if (!this.carroService.temEndereco || this.carroService.formPagamento.values != null) {
 
       this.showAlert('Preencha todos os campos obrigatórios');
-    }
-    else {
 
-      this.showToast('Pedido enviado com sucesso!')
-      setTimeout(() =>{
-        this.carroService.limparCarrinho()
+    } else {
+
+      this.showToast('Pedido enviado com sucesso!');
+
+      setTimeout(() => {
+        this.carroService.limparCarrinho();
         this.router.navigate(['/tabs/inicio']);
-      }, 2300)
-    
+      }, 2300);
+
+
+
+     console.log(this.pedidoEntrega)
     }
-  }
+}
 }

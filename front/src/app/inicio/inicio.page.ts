@@ -3,10 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { carrinhoService } from '../servicesCarrinho/carrinhoService';
-
-
-
-
 interface Produto {
   id: number;
   nome: string;
