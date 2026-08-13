@@ -21,6 +21,13 @@ interface Endereco {
   principal: boolean;
 }
 
+interface FormPagamento{
+pagamento: string
+
+
+
+}
+
 interface FormEndereco {
   nome: string;
   endereco: string;
@@ -40,25 +47,24 @@ interface FormEndereco {
 
 export class carrinhoPage {
   constructor(private router: Router, public carroService: carrinhoService, private pedido: PedidosService) { }
-  
-  // pedidoEntrega: {
-  //   nomeUser: string;
-  //   enderecoUser: string;
-  //   complementoUser: string;
-  //   bairroUser: string;
-  //   numeroUser: string;
-  //   precoTotal: number;
-  //   formaPagmento: string;
-  // } = {
-  //     nomeUser: "",
-  //     enderecoUser: "",
-  //     complementoUser: "",
-  //     bairroUser: "",
-  //     numeroUser: "",
-  //     precoTotal: 0,
-  //     formaPagmento: "",
-  //   };
 
+  pedidoEntrega: {
+    nomeUser: string;
+    enderecoUser: string;
+    complementoUser: string;
+    bairroUser: string;
+    numeroUser: string;
+    precoTotal: number;
+    formaPagmento: string;
+  } = {
+      nomeUser: "",
+      enderecoUser: "",
+      complementoUser: "",
+      bairroUser: "",
+      numeroUser: "",
+      precoTotal: 0,
+      formaPagmento: "",
+    };
 
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
   formAberto = false;
@@ -216,10 +222,26 @@ export class carrinhoPage {
         this.carroService.limparCarrinho();
         this.router.navigate(['/tabs/inicio']);
       }, 2300);
+      
+      const endereco: Endereco = {
+        id: 0,
+        nomeDestinatario: this.carroService.nomeUser,
+        endereco: this.carroService.enderecoUser,
+        numero: this.carroService.numeroUser,
+        complemento: this.carroService.complementoUser,
+        bairro: this.carroService.bairroUser,
+        cidade: this.carroService.cidadeUser,
+        cep: this.carroService.cepUser,
+        principal: true,
+      };
+    
+      const pagamento: FormPagamento = {
+        pagamento: this.carroService.formaPagmento,
+      };
+    
 
-
-     this.carroService.salvarPedido;
+      this.carroService.salvarPedido(endereco , pagamento);
 
     }
-}
+  }
 }
