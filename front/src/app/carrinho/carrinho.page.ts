@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular/standalone';
 import { carrinhoService } from '../servicesCarrinho/carrinhoService';
 import { PedidosService } from '../servicePedidos/pedidos-service';
-import { push } from 'ionicons/icons';
 
 
 
@@ -42,23 +41,23 @@ interface FormEndereco {
 export class carrinhoPage {
   constructor(private router: Router, public carroService: carrinhoService, private pedido: PedidosService) { }
   
-  pedidoEntrega: {
-    nomeUser: string;
-    enderecoUser: string;
-    complementoUser: string;
-    bairroUser: string;
-    numeroUser: string;
-    precoTotal: number;
-    formaPagmento: string;
-  } = {
-      nomeUser: "",
-      enderecoUser: "",
-      complementoUser: "",
-      bairroUser: "",
-      numeroUser: "",
-      precoTotal: 0,
-      formaPagmento: "",
-    };
+  // pedidoEntrega: {
+  //   nomeUser: string;
+  //   enderecoUser: string;
+  //   complementoUser: string;
+  //   bairroUser: string;
+  //   numeroUser: string;
+  //   precoTotal: number;
+  //   formaPagmento: string;
+  // } = {
+  //     nomeUser: "",
+  //     enderecoUser: "",
+  //     complementoUser: "",
+  //     bairroUser: "",
+  //     numeroUser: "",
+  //     precoTotal: 0,
+  //     formaPagmento: "",
+  //   };
 
 
   paginaAtiva: 'carrinho' | 'checkout' = 'carrinho';
@@ -219,8 +218,8 @@ export class carrinhoPage {
       }, 2300);
 
 
+     this.carroService.salvarPedido;
 
-     console.log(this.pedidoEntrega)
     }
 }
 }

@@ -12,6 +12,16 @@ interface ItemCarro {
   selecionado: boolean;
 }
 
+interface PedidoEntrega {
+  id: number;
+  nomeUser: string;
+  enderecoUser: string;
+  complementoUser: string;
+  bairroUser: string;
+  numeroUser: string;
+  precoTotal: number;
+  formaPagmento: string;
+}
 interface Endereco {
   id: number;
   nomeDestinatario: string;
@@ -51,7 +61,7 @@ export class carrinhoService {
 
   itens: ItemCarro[] = [];
   formPagamento: FormPagamento[] = [];
-
+  dadosPedidos: PedidoEntrega[]= [];
 
 
   enderecos: Endereco[] = [
@@ -67,6 +77,26 @@ export class carrinhoService {
       principal: true,
     },
   ];
+  salvarPedido(endereco: Endereco, pagamento: FormPagamento){
+
+
+    this.dadosPedidos.push(
+      {
+        id: 0 ,
+        nomeUser : endereco.nomeDestinatario,
+        enderecoUser : endereco.endereco,
+        complementoUser : endereco.complemento,
+        bairroUser : endereco.bairro,
+        numeroUser : endereco.numero,
+        precoTotal : 0,
+        formaPagmento : pagamento.pagamento,
+      }
+    )
+
+console.log(this.dadosPedidos)
+
+
+  }
 
   limparCarrinho() {
     this.itens = [];

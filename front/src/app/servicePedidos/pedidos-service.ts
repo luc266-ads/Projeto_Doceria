@@ -20,10 +20,7 @@ export class PedidosService {
 
   }
 
-  dadosPerdidos: PedidoEntrega[] = [];
-
-
-
+  dadosPedidos: PedidoEntrega[] = [];
 
   buscarPedidos() {
     return this.api.listarPedidos();
