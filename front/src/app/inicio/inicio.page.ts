@@ -155,7 +155,6 @@ export class inicioPage {
       selecionado: false
     });
 
- 
 
   }
 

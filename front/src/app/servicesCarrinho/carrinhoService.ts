@@ -79,22 +79,15 @@ export class carrinhoService {
       principal: true,
     },
   ];
-  salvarPedido(endereco: Endereco, pagamento: FormPagamento){
+  salvarPedido( pagamento: FormPagamento){
 
-    this.nomeUser = endereco.nomeDestinatario;
-    this.enderecoUser = endereco.endereco;
-    this.complementoUser = endereco.complemento;
-    this.bairroUser = endereco.bairro;
-    this.numeroUser = endereco.numero;
-    this.cidadeUser = endereco.cidade;
-    this.cepUser = endereco.cep;
-
+  
     this.formaPagmento = pagamento.pagamento;
 
 
     this.dadosPedidos.push(
       {
-        id: endereco.id,
+        id: 0,
         nomeUser : this.nomeUser,
         enderecoUser : this.enderecoUser,
         complementoUser : this.complementoUser,
@@ -105,13 +98,9 @@ export class carrinhoService {
       }
     )
 
-    return console.log(this.dadosPedidos)
+    return console.log(this.enderecos)
   }
 
-  enviarPedido(){
-
-   
-  }
 
   limparCarrinho() {
     this.itens = [];

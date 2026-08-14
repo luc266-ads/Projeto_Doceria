@@ -208,7 +208,8 @@ export class carrinhoPage {
     this.showToast('Endereço adicionado com sucesso!');
   }
 
-  finalizarPedido() {
+  finalizarPedido( ) {
+
 
     if (!this.carroService.temEndereco || this.carroService.formPagamento.values != null) {
 
@@ -223,24 +224,14 @@ export class carrinhoPage {
         this.router.navigate(['/tabs/inicio']);
       }, 2300);
       
-      const endereco: Endereco = {
-        id: 0,
-        nomeDestinatario: this.carroService.nomeUser,
-        endereco: this.carroService.enderecoUser,
-        numero: this.carroService.numeroUser,
-        complemento: this.carroService.complementoUser,
-        bairro: this.carroService.bairroUser,
-        cidade: this.carroService.cidadeUser,
-        cep: this.carroService.cepUser,
-        principal: true,
-      };
+     
     
       const pagamento: FormPagamento = {
-        pagamento: this.carroService.formaPagmento,
+        pagamento: "",
       };
     
 
-      this.carroService.salvarPedido(endereco , pagamento);
+      this.carroService.salvarPedido(pagamento);
 
     }
   }
