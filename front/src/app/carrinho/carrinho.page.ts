@@ -227,7 +227,6 @@ export class carrinhoPage {
       }, 2300);
       
      
-      console.log(this.carroService.enderecoSelecionado)
       this.carroService.salvarPedido();
     
     }

@@ -13,7 +13,7 @@ interface ItemCarro {
 }
 
 interface PedidoEntrega {
-  id: number;
+  idUser: number;
   nomeUser: string;
   enderecoUser: string;
   complementoUser: string;
@@ -22,7 +22,7 @@ interface PedidoEntrega {
   precoTotal: number;
   formaPagmento: string;
 }
-interface Endereco {
+interface EnderecoPrincipal {
   id: number;
   nomeDestinatario: string;
   endereco: string;
@@ -63,10 +63,10 @@ export class carrinhoService {
 
   itens: ItemCarro[] = [];
   formPagamento: FormPagamento[] = [];
-  dadosPedidos: PedidoEntrega[]= [];
+  dadosPedidos: PedidoEntrega[] = [];
 
 
-  enderecos: Endereco[] = [
+  enderecos: EnderecoPrincipal[] = [
     {
       id: Date.now(),
       nomeDestinatario: 'Ana Souza',
@@ -79,24 +79,6 @@ export class carrinhoService {
       principal: true,
     },
   ];
-  salvarPedido(){
-
-  
-    this.dadosPedidos.push(
-      {
-        id: 0,
-        nomeUser : this.nomeUser,
-        enderecoUser : this.enderecoUser,
-        complementoUser : this.complementoUser,
-        bairroUser : this.bairroUser,
-        numeroUser : this.numeroUser,
-        precoTotal : 0,
-        formaPagmento : this.formaPagmento,
-      }
-    )
-
-    return console.log(this.enderecos)
-  }
 
 
   limparCarrinho() {
@@ -123,7 +105,7 @@ export class carrinhoService {
     return this.subtotal + this.taxaEntrega;
   }
 
-  get enderecoSelecionado(): Endereco | undefined {
+  get enderecoSelecionado(): EnderecoPrincipal | undefined {
     return this.enderecos.find((endereco) => endereco.id === this.enderecoSelecionadoId);
   }
 
@@ -131,5 +113,47 @@ export class carrinhoService {
     return !!this.enderecoSelecionado;
   }
 
+  salvarPedido() {
+
+    const id = this.enderecoSelecionado?.id ?? 0;
+    const nome = this.enderecoSelecionado?.nomeDestinatario ?? "";
+    const endereco = this.enderecoSelecionado?.endereco ?? "";
+    const complemento = this.enderecoSelecionado?.complemento ?? "";
+    const bairro = this.enderecoSelecionado?.bairro ?? "";
+    const numero = this.enderecoSelecionado?.numero ?? "";
+
+    this.dadosPedidos = [{
+
+      idUser: id,
+      nomeUser: "",
+      enderecoUser: "",
+      complementoUser: "",
+      bairroUser: "",
+      numeroUser: "",
+      precoTotal: 0,
+      formaPagmento: "",
+
+    }]
+      
+ 
+    const pedidos = this.dadosPedidos.map(pedido =>
+      pedido.idUser === id
+        ? {
+          ...pedido,
+          idUser: Date.now(), 
+          nomeUser: nome,
+          enderecoUser: endereco,
+          complementoUser: complemento,
+          bairroUser: bairro,
+          numeroUser: numero,
+          precoTotal: 0,
+          formaPagmento: "",
+        }
+        : pedido
+    );
+    
+
+    return console.log(pedidos)
+  }
 
 }
