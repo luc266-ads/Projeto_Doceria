@@ -174,6 +174,8 @@ export class carrinhoPage {
 
   selecionarEndereco(id: number): void {
     this.carroService.enderecoSelecionadoId = id;
+   
+
   }
 
   toggleFormEndereco(): void {
@@ -225,14 +227,9 @@ export class carrinhoPage {
       }, 2300);
       
      
+      console.log(this.carroService.enderecoSelecionado)
+      this.carroService.salvarPedido();
     
-      const pagamento: FormPagamento = {
-        pagamento: "",
-      };
-    
-
-      this.carroService.salvarPedido(pagamento);
-
     }
   }
 }

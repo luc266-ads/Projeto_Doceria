@@ -68,7 +68,7 @@ export class carrinhoService {
 
   enderecos: Endereco[] = [
     {
-      id: 1,
+      id: Date.now(),
       nomeDestinatario: 'Ana Souza',
       endereco: 'Rua das Palmeiras',
       numero: '245',
@@ -79,12 +79,9 @@ export class carrinhoService {
       principal: true,
     },
   ];
-  salvarPedido( pagamento: FormPagamento){
+  salvarPedido(){
 
   
-    this.formaPagmento = pagamento.pagamento;
-
-
     this.dadosPedidos.push(
       {
         id: 0,
