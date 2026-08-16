@@ -121,6 +121,7 @@ export class carrinhoService {
     const complemento = this.enderecoSelecionado?.complemento ?? "";
     const bairro = this.enderecoSelecionado?.bairro ?? "";
     const numero = this.enderecoSelecionado?.numero ?? "";
+    const pagamento = this.formPagamento
 
     this.dadosPedidos = [{
 
@@ -147,13 +148,15 @@ export class carrinhoService {
           bairroUser: bairro,
           numeroUser: numero,
           precoTotal: 0,
-          formaPagmento: "",
+          formaPagmento: pagamento,
         }
         : pedido
     );
     
 
-    return console.log(pedidos)
+    return console.log(pedidos), console.log(this.formPagamento)
   }
+
+
 
 }
