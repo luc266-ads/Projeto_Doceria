@@ -115,13 +115,14 @@ export class carrinhoService {
 
   salvarPedido() {
 
-    const id = this.enderecoSelecionado?.id ?? 0;
-    const nome = this.enderecoSelecionado?.nomeDestinatario ?? "";
-    const endereco = this.enderecoSelecionado?.endereco ?? "";
-    const complemento = this.enderecoSelecionado?.complemento ?? "";
-    const bairro = this.enderecoSelecionado?.bairro ?? "";
-    const numero = this.enderecoSelecionado?.numero ?? "";
-    const pagamento = this.formPagamento
+    let id = this.enderecoSelecionado?.id ?? 0;
+    let nome = this.enderecoSelecionado?.nomeDestinatario ?? "";
+    let endereco = this.enderecoSelecionado?.endereco ?? "";
+    let complemento = this.enderecoSelecionado?.complemento ?? "";
+    let bairro = this.enderecoSelecionado?.bairro ?? "";
+    let numero = this.enderecoSelecionado?.numero ?? "";
+    let pagamento = this.formPagamento
+    let precoTotal = this.subtotal + this.taxaEntrega
 
     this.dadosPedidos = [{
 
@@ -137,7 +138,7 @@ export class carrinhoService {
     }]
       
  
-    const pedidos = this.dadosPedidos.map(pedido =>
+    let pedidos = this.dadosPedidos.map(pedido =>
       pedido.idUser === id
         ? {
           ...pedido,
@@ -147,14 +148,14 @@ export class carrinhoService {
           complementoUser: complemento,
           bairroUser: bairro,
           numeroUser: numero,
-          precoTotal: 0,
+          precoTotal: precoTotal,
           formaPagmento: pagamento,
         }
         : pedido
     );
     
 
-    return console.log(pedidos), console.log(this.formPagamento)
+    return console.log(pedidos)
   }
 
 
